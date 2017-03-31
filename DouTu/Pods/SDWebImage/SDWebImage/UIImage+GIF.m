@@ -11,6 +11,31 @@
 
 @implementation UIImage (GIF)
 
++ (CGFloat)sd_animatedGifDurationWithData:(NSData *)data
+{
+    if (!data) {
+        return 0;
+    }
+    CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
+    size_t count = CGImageSourceGetCount(source);
+    if (count <= 1) {
+        return 0;
+    } else {
+        NSTimeInterval duration = 0.0f;
+        for (size_t i = 0; i < count; i++) {
+            CGImageRef image = CGImageSourceCreateImageAtIndex(source, i, NULL);
+            if (!image) {
+                continue;
+            }
+            duration += [self sd_frameDurationAtIndex:i source:source];
+            CGImageRelease(image);
+        }
+        if (!duration) {
+            duration = (1.0f / 10.0f) * count;
+        }
+        return duration;
+    }
+}
 + (UIImage *)sd_animatedGIFWithData:(NSData *)data {
     if (!data) {
         return nil;

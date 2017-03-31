@@ -16,4 +16,6 @@
 
 - (UIImage *)sd_animatedImageByScalingAndCroppingToSize:(CGSize)size;
 
++ (CGFloat)sd_animatedGifDurationWithData:(NSData *)data;
+
 @end

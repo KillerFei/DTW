@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIButton    *wxBtn;
 @property (nonatomic, strong) UIButton    *collectBtn;
 @property (nonatomic, strong) UIButton    *saveBtn;
+@property (nonatomic, strong) UIButton    *editBtn;
 @end
 
 @implementation DTFunctionView
@@ -107,6 +108,19 @@
     }
     return _saveBtn;
 }
+- (UIButton *)editBtn
+{
+    if (!_editBtn) {
+        _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_editBtn setTitle:@"改图" forState:UIControlStateNormal];
+        _editBtn.backgroundColor = DT_Base_EdgeColor;
+        _editBtn.titleLabel.font = DT_Base_ContentFont;
+        _editBtn.layer.masksToBounds = YES;
+        _editBtn.layer.cornerRadius  = 5;
+    }
+    return _editBtn;
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -118,6 +132,7 @@
         [self.contentView addSubview:self.wxBtn];
         [self.contentView addSubview:self.collectBtn];
         [self.contentView addSubview:self.saveBtn];
+        [self.contentView addSubview:self.editBtn];
     }
     return self;
 }
@@ -162,6 +177,12 @@
             make.bottom.equalTo(self.collectBtn.mas_top).with.offset(-15);
             make.size.mas_equalTo(CGSizeMake(btnWidth, 40));
         }];
+    
+        [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.right.equalTo(_showView);
+            make.size.mas_equalTo(CGSizeMake(40, 20));
+        } ];
 }
 - (void)configModel:(DTBaseModel *)model
 {

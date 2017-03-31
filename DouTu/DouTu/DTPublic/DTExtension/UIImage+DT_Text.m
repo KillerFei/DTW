@@ -16,10 +16,10 @@
       withAttributes:(NSDictionary *)attributes
 {
     //绘制上下文
-    UIGraphicsBeginImageContext(self.size);
+    UIGraphicsBeginImageContext(CGSizeMake(230*DT_Base_Scale, 230*DT_Base_Scale));
     [self drawInRect:CGRectMake(0,0, self.size.width, self.size.height)];
     [text drawInRect:rect withAttributes:attributes];
-    UIImage *newImage =UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
 }
@@ -47,15 +47,38 @@
 }
 
 
-+ (NSData *)createDataWithImages:(NSArray<UIImage *> *)images
++ (NSString *)pathWithImages:(NSArray<UIImage *>*)images
+                         gifPath:(NSString *)path
+                         durtion:(CGFloat)durtion;
 {
-    NSMutableData *imgData = [[NSMutableData alloc] init];
-    for (UIImage *img in images) {
-        
-        NSData *imageData = UIImagePNGRepresentation(img);
-        [imgData appendData:imageData];
+    NSString *documentStr = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    NSString *gifName =  [NSString stringWithFormat:@"%@%lu.gif", [NSDate date], (unsigned long)[path hash]];
+    NSString *gifPath = [documentStr stringByAppendingPathComponent:gifName];
+    CFURLRef url = CFURLCreateWithFileSystemPath (
+                                                  kCFAllocatorDefault,
+                                                  (CFStringRef)gifPath,
+                                                  kCFURLPOSIXPathStyle,
+                                                  false);
+    CGImageDestinationRef destination = CGImageDestinationCreateWithURL(url, kUTTypeGIF, images.count, NULL);
+    NSMutableDictionary *picInterval= [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:durtion],(NSString *)kCGImagePropertyGIFDelayTime,nil];
+    NSDictionary *frameProperties = [NSDictionary dictionaryWithObject:picInterval forKey:(NSString *)kCGImagePropertyGIFDictionary];
+    //设置gif信息
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:2];
+    [dict setObject:[NSNumber numberWithBool:YES] forKey:(NSString*)kCGImagePropertyGIFHasGlobalColorMap];
+    [dict setObject:(NSString *)kCGImagePropertyColorModelRGB forKey:(NSString *)kCGImagePropertyColorModel];
+    [dict setObject:[NSNumber numberWithInt:8] forKey:(NSString*)kCGImagePropertyDepth];
+    [dict setObject:[NSNumber numberWithInt:0] forKey:(NSString *)kCGImagePropertyGIFLoopCount];
+    NSDictionary *gifProperties = [NSDictionary dictionaryWithObject:dict
+                                                    forKey:(NSString *)kCGImagePropertyGIFDictionary];
+    //合成gif
+    for (UIImage *dImg in images)
+    {
+        CGImageDestinationAddImage(destination, dImg.CGImage, (__bridge CFDictionaryRef)frameProperties);
     }
-    return imgData;
+    CGImageDestinationSetProperties(destination, (__bridge CFDictionaryRef)gifProperties);
+    CGImageDestinationFinalize(destination);
+    CFRelease(destination);
+    return gifPath;
 }
 
 @end

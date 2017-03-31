@@ -57,11 +57,7 @@
 - (void)configModel:(DTBaseModel *)model
 {
     _titleLabel.text = model.name;
-    if (model.insert) {
-        
-    } else {
-         [_imageView sd_setImageWithURL:[NSURL URLWithString:model.picPath]];
-    }
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:model.picPath]];
 }
 - (void)prepareForReuse
 {

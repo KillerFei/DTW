@@ -17,4 +17,9 @@ typedef NS_ENUM(NSUInteger, DTSendChannelType)
 
 + (void)sendPic:(DTBaseModel *)pic
        channelType:(DTSendChannelType)channelType;
+
++ (void)sendNonGifContentToWx:(NSData *)pic;
++ (void)sendGifContentToWx:(NSData *)pic;
++ (void)sendImageMessageToQQ:(NSData *)pic;
+
 @end

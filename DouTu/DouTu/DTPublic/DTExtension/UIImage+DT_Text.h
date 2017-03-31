@@ -18,8 +18,9 @@
 
 + (NSArray *)getImagesWithData:(NSData *)data;
 
-+ (NSData *)createDataWithImages:(NSArray<UIImage *>*)images;
-
++ (NSString *)pathWithImages:(NSArray<UIImage *>*)images
+                         gifPath:(NSString *)path
+                         durtion:(CGFloat)durtion;
 
 
 @end

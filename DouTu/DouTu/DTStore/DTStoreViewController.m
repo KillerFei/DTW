@@ -93,14 +93,6 @@
             NSMutableArray *hots = [self.dataSource objectForKey:@"hots"];
             [hots removeAllObjects];
             [hots addObjectsFromArray:response];
-            DTBaseModel *model = [[DTBaseModel alloc] init];
-            model.insert = YES;
-            model.name   = @"更多";
-            if (hots.count > 8) {
-                [hots insertObject:model atIndex:7];
-            } else {
-                [hots insertObject:model atIndex:hots.count];
-            }
             [self.myCollectionView reloadData];
         }
     }];

@@ -27,6 +27,7 @@
 #import "DTOnlineManager.h"
 #import "DTDBManager.h"
 #import "DTFouncManager.h"
+#import "UIImage+DT_Text.h"
 //------------------- 三方 -------------
 #import "FMDB.h"
 #import "Masonry.h"
@@ -37,6 +38,7 @@
 #import "MBProgressHUD.h"
 #import "SDWebImageManager.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIImage+GIF.h>
 
 //------------------- 开放平台 -------------
 #import "WXApi.h"

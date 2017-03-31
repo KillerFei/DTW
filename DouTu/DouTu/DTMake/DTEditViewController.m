@@ -369,10 +369,28 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
 #pragma mark -----------  Action
 - (void)sendPicToQQ
 {
-    
+    if ([_model.mediaType isEqual:0]) {
+        
+    } else {
+        NSArray *gifImg = self.showView.image.images;
+        CGFloat durtion = [UIImage sd_animatedGifDurationWithData:[[SDImageCache sharedImageCache] diskImageDataBySearchingAllPathsForKey:_model.gifPath]]/gifImg.count;
+        NSMutableArray *imgs = [[NSMutableArray alloc] init];
+        for (UIImage *image in gifImg) {
+            if (!kStringIsEmpty(_wordView.text)) {
+                UIImage *img = [image addText:_wordView.text textRect:self.wordView.frame withAttributes:@{NSFontAttributeName:_wordView.font, NSForegroundColorAttributeName:_wordView.textColor, NSBackgroundColorAttributeName:_wordView.backgroundColor}];
+                [imgs addObject:img];
+            }
+        }
+        NSString *gifPath = [UIImage pathWithImages:imgs gifPath:_model.gifPath durtion:durtion];
+        [DTSendPicManager sendImageMessageToQQ:[NSData dataWithContentsOfFile:gifPath]];
+    }
 }
 - (void)sendPicToWx
 {
+ 
+    
+    
+    
     
 }
 #pragma mark ---------- EditView delegate
