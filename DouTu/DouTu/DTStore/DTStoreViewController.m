@@ -9,6 +9,7 @@
 #import "DTStoreViewController.h"
 #import "DTTagViewController.h"
 #import "DTAllTypeViewController.h"
+#import "DTEditViewController.h"
 #import "DTFunctionView.h"
 
 @interface DTStoreViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,DTFunctionViewDelegate>
@@ -253,5 +254,14 @@
 {
     [DTFouncManager savePic:_picModel toTab:kDTTableType_Collect];
 }
-
+- (void)savePic
+{
+    
+}
+- (void)editPic
+{
+    DTEditViewController *editVC = [[DTEditViewController alloc] init];
+    editVC.model = _picModel;
+    [self.navigationController pushViewController:editVC animated:YES];
+}
 @end

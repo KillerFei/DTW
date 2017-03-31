@@ -142,13 +142,14 @@
     }];
 }
 
-+ (void)getDetailWithItemId:(NSNumber *)itemId callBack:(callBack)callBack
++ (void)getDetailWithItemId:(NSNumber *)itemId callBack:(detailCallBack)callBack
 {
     [HYBNetworking getWithUrl:kDTGetDetailUrl refreshCache:YES params:@{@"itemId":itemId} success:^(id response) {
         NSString *code = [(NSDictionary *)response objectForKey:@"code"];
         if ([code isEqualToString:@"0"]) {
             NSDictionary *data = [(NSDictionary *)response objectForKey:@"data"];
             NSArray      *list = data[@"list"];
+            NSDictionary *item = data[@"item"];
             [DTBaseModel mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
                 return @{@"pid" : @"id"};
             }];
@@ -157,14 +158,21 @@
                 DTBaseModel *model = [DTBaseModel mj_objectWithKeyValues:pic];
                 [pics addObject:model];
             }
+            DTBaseModel *detailModel = [DTBaseModel mj_objectWithKeyValues:item];
             if (callBack) {
-                callBack(nil,pics);
+                callBack(nil,pics,detailModel);
             }
         } else {
-            [DTNetManger requestFailedCallBack:callBack];
+            if (callBack) {
+                NSError *error = [[self class] errorWithCode:0 description:nil];
+                callBack(error,nil,nil);
+            }
         }
     } fail:^(NSError *error) {
-        [DTNetManger requestFailedCallBack:callBack];
+        if (callBack) {
+            NSError *error = [[self class] errorWithCode:0 description:nil];
+            callBack(error,nil,nil);
+        }
     }];
 }
 

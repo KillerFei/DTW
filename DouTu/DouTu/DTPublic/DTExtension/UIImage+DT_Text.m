@@ -17,7 +17,7 @@
 {
     //绘制上下文
     UIGraphicsBeginImageContext(CGSizeMake(230*DT_Base_Scale, 230*DT_Base_Scale));
-    [self drawInRect:CGRectMake(0,0, self.size.width, self.size.height)];
+    [self drawInRect:CGRectMake(0,0, 230*DT_Base_Scale, 230*DT_Base_Scale)];
     [text drawInRect:rect withAttributes:attributes];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

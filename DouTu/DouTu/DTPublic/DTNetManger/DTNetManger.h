@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+@class DTBaseModel;
 
 typedef void(^callBack)(NSError *error, NSArray *response);
+typedef void(^detailCallBack) (NSError *error, NSArray *response, DTBaseModel *detailModel);
 
 @interface DTNetManger : NSObject
 
@@ -28,7 +30,7 @@ typedef void(^callBack)(NSError *error, NSArray *response);
                            callBack:(callBack)callBack;
 
 + (void)getDetailWithItemId:(NSNumber *)itemId
-                   callBack:(callBack)callBack;
+                   callBack:(detailCallBack)callBack;
 
 + (void)getTagAllLisWithCallBack:(callBack)callBack;
 

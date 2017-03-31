@@ -210,7 +210,6 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     [self setUpSubViews];
     [self setLeftBackNavItem];
     [self requestData];
-    [self setUpShowView];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -334,15 +333,17 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
 #pragma mark ----------- request
 - (void)requestData
 {
-    if (!_model.pid) {
+    if (!_model.itemId) {
         return;
     }
-    [DTNetManger getDetailWithItemId:_model.pid callBack:^(NSError *error, NSArray *response) {
+    [DTNetManger getDetailWithItemId:_model.itemId callBack:^(NSError *error, NSArray *response, DTBaseModel *detailModel) {
         
         if (!kArrayIsEmpty(response)) {
+            _model = detailModel;
             [self.dataSource removeAllObjects];
             [self.dataSource addObjectsFromArray:response];
             [self.editTab reloadData];
+            [self setUpShowView];
         }
     }];
 }

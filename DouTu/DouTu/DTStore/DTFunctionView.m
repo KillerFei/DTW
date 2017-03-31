@@ -105,6 +105,7 @@
         _saveBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, -3);
         _saveBtn.layer.masksToBounds = YES;
         _saveBtn.layer.cornerRadius  = 17.5;
+        [_saveBtn addTarget:self action:@selector(saveBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _saveBtn;
 }
@@ -114,6 +115,7 @@
         _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_editBtn setTitle:@"改图" forState:UIControlStateNormal];
+        [_editBtn addTarget:self action:@selector(editBtnAction) forControlEvents:UIControlEventTouchUpInside];
         _editBtn.backgroundColor = DT_Base_EdgeColor;
         _editBtn.titleLabel.font = DT_Base_ContentFont;
         _editBtn.layer.masksToBounds = YES;
@@ -210,6 +212,18 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(collectPic)]) {
         [_delegate collectPic];
+    }
+}
+- (void)saveBtnAction
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(saveBtnAction)]) {
+        [_delegate savePic];
+    }
+}
+- (void)editBtnAction
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(editPic)]) {
+        [_delegate editPic];
     }
 }
 @end
