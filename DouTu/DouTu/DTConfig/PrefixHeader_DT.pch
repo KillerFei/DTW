@@ -13,13 +13,9 @@
 //app配置
 #import "Config_DT.h"
 #import "NetAPI_DT.h"
-
 //app工具
 #import "DTNetManger.h"
 #import "DTBaseModel.h"
-#import "DTBaseCollectionViewCell.h"
-#import "DTBaseTitleCollectionViewCell.h"
-#import "DTCollectionReusableView.h"
 #import "NSURL+DT_Ex.h"
 #import "UIView+DT_Ex.h"
 #import "DTHudManager.h"
@@ -28,6 +24,10 @@
 #import "DTDBManager.h"
 #import "DTFouncManager.h"
 #import "UIImage+DT_Text.h"
+#import "UIButton+DT_Ex.h"
+#import "DTCollectionReusableView.h"
+#import "DTBaseCollectionViewCell.h"
+#import "DTBaseTitleCollectionViewCell.h"
 //------------------- 三方 -------------
 #import "FMDB.h"
 #import "Masonry.h"
@@ -37,9 +37,8 @@
 #import "HYBNetworking.h"
 #import "MBProgressHUD.h"
 #import "SDWebImageManager.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/UIImage+GIF.h>
-
+#import <SDWebImage/UIImageView+WebCache.h>
 //------------------- 开放平台 -------------
 #import "WXApi.h"
 #import <TencentOpenAPI/TencentOAuth.h>

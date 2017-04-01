@@ -71,52 +71,28 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
 - (UIButton *)qqBtn
 {
     if (!_qqBtn) {
-        _qqBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_qqBtn addTarget:self action:@selector(sendPicToQQ) forControlEvents:UIControlEventTouchUpInside];
-        [_qqBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_qqBtn setImage:[UIImage imageNamed:@"dt_logo_qq_black"] forState:UIControlStateNormal];
-        _qqBtn.backgroundColor = DT_Base_EdgeColor;
-        _qqBtn.titleLabel.font = DT_Base_ContentFont;
-        _qqBtn.layer.masksToBounds = YES;
-        _qqBtn.layer.cornerRadius  = 17.5;
+        _qqBtn = [UIButton dtButtonWithTitle:nil image:[UIImage imageNamed:@"dt_logo_qq_black"] target:self action:@selector(sendPicToQQ)];
     }
     return _qqBtn;
 }
 - (UIButton *)wxBtn
 {
     if (!_wxBtn) {
-        _wxBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_wxBtn addTarget:self action:@selector(sendPicToWx) forControlEvents:UIControlEventTouchUpInside];
-        [_wxBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_wxBtn setImage:[UIImage imageNamed:@"dt_logo_wx_black"] forState:UIControlStateNormal];
-        _wxBtn.backgroundColor = DT_Base_EdgeColor;
-        _wxBtn.titleLabel.font = DT_Base_ContentFont;
-        _wxBtn.layer.masksToBounds = YES;
-        _wxBtn.layer.cornerRadius  = 17.5;
+        _wxBtn = [UIButton dtButtonWithTitle:nil image:[UIImage imageNamed:@"dt_logo_wx_black"] target:self action:@selector(sendPicToWx)];
     }
     return _wxBtn;
 }
 - (UIButton *)collectBtn
 {
     if (!_collectBtn) {
-        _collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_collectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_collectBtn setImage:[UIImage imageNamed:@"dt_down_em"] forState:UIControlStateNormal];
-        _collectBtn.backgroundColor = DT_Base_EdgeColor;
-        _collectBtn.layer.masksToBounds = YES;
-        _collectBtn.layer.cornerRadius  = 17.5;
+        _collectBtn = [UIButton dtButtonWithTitle:nil image:[UIImage imageNamed:@"dt_down_em"] target:self action:@selector(sendPicToWx)];
     }
     return _collectBtn;
 }
 - (UIButton *)saveBtn
 {
     if (!_saveBtn) {
-        _saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_saveBtn setImage:[UIImage imageNamed:@"dt_favor_normal"] forState:UIControlStateNormal];
-        _saveBtn.backgroundColor = DT_Base_EdgeColor;
-        _saveBtn.layer.masksToBounds = YES;
-        _saveBtn.layer.cornerRadius  = 17.5;
+        _saveBtn = [UIButton dtButtonWithTitle:nil image:[UIImage imageNamed:@"dt_favor_normal"] target:self action:@selector(sendPicToWx)];
     }
     return _saveBtn;
 }
@@ -227,6 +203,7 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     self.view.backgroundColor = RGB(240, 240, 240);
     _seleteIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     CGFloat imgWidth = 230*DT_Base_Scale;
+    imgWidth = 140;
     CGFloat btnSpace = (KSCREEN_WIDTH-300*DT_Base_Scale-15)/2;
     CGFloat space    = (imgWidth-190)/3;
     self.showBackView.frame = CGRectMake(15, 15, imgWidth, imgWidth);

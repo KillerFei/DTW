@@ -16,8 +16,10 @@
       withAttributes:(NSDictionary *)attributes
 {
     //绘制上下文
-    UIGraphicsBeginImageContext(CGSizeMake(230*DT_Base_Scale, 230*DT_Base_Scale));
-    [self drawInRect:CGRectMake(0,0, 230*DT_Base_Scale, 230*DT_Base_Scale)];
+//    UIGraphicsBeginImageContext(CGSizeMake(230*DT_Base_Scale, 230*DT_Base_Scale));
+//    [self drawInRect:CGRectMake(0,0, 230*DT_Base_Scale, 230*DT_Base_Scale)];
+    UIGraphicsBeginImageContext(CGSizeMake(140, 140));
+    [self drawInRect:CGRectMake(0,0, 140, 140)];
     [text drawInRect:rect withAttributes:attributes];
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
