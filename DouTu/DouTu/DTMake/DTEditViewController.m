@@ -71,28 +71,28 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
 - (UIButton *)qqBtn
 {
     if (!_qqBtn) {
-        _qqBtn = [UIButton dtButtonWithTitle:nil image:[UIImage imageNamed:@"dt_logo_qq_black"] target:self action:@selector(sendPicToQQ)];
+        _qqBtn = [UIButton dtFuncButtonWithTitle:nil image:[UIImage imageNamed:@"dt_logo_qq_black"] target:self action:@selector(sendPicToQQ)];
     }
     return _qqBtn;
 }
 - (UIButton *)wxBtn
 {
     if (!_wxBtn) {
-        _wxBtn = [UIButton dtButtonWithTitle:nil image:[UIImage imageNamed:@"dt_logo_wx_black"] target:self action:@selector(sendPicToWx)];
+        _wxBtn = [UIButton dtFuncButtonWithTitle:nil image:[UIImage imageNamed:@"dt_logo_wx_black"] target:self action:@selector(sendPicToWx)];
     }
     return _wxBtn;
 }
 - (UIButton *)collectBtn
 {
     if (!_collectBtn) {
-        _collectBtn = [UIButton dtButtonWithTitle:nil image:[UIImage imageNamed:@"dt_down_em"] target:self action:@selector(sendPicToWx)];
+        _collectBtn = [UIButton dtFuncButtonWithTitle:nil image:[UIImage imageNamed:@"dt_down_em"] target:self action:@selector(sendPicToWx)];
     }
     return _collectBtn;
 }
 - (UIButton *)saveBtn
 {
     if (!_saveBtn) {
-        _saveBtn = [UIButton dtButtonWithTitle:nil image:[UIImage imageNamed:@"dt_favor_normal"] target:self action:@selector(sendPicToWx)];
+        _saveBtn = [UIButton dtFuncButtonWithTitle:nil image:[UIImage imageNamed:@"dt_favor_normal"] target:self action:@selector(sendPicToWx)];
     }
     return _saveBtn;
 }
@@ -203,7 +203,6 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     self.view.backgroundColor = RGB(240, 240, 240);
     _seleteIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     CGFloat imgWidth = 230*DT_Base_Scale;
-    imgWidth = 140;
     CGFloat btnSpace = (KSCREEN_WIDTH-300*DT_Base_Scale-15)/2;
     CGFloat space    = (imgWidth-190)/3;
     self.showBackView.frame = CGRectMake(15, 15, imgWidth, imgWidth);

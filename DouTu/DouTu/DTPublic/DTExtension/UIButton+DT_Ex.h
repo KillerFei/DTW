@@ -10,7 +10,7 @@
 
 @interface UIButton (DT_Ex)
 
-+ (UIButton *)dtButtonWithTitle:(NSString *)title
++ (UIButton *)dtFuncButtonWithTitle:(NSString *)title
                           image:(UIImage *)image
                          target:(id)target
                          action:(SEL)action;
