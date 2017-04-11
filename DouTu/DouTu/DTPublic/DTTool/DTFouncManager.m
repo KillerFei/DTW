@@ -10,6 +10,11 @@
 
 @implementation DTFouncManager
 
++ (void)downLoadPic:(NSString *)picPath
+{
+    UIImage *image = [UIImage imageWithContentsOfFile:picPath];
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+}
 + (void)savePic:(DTBaseModel *)pic
           toTab:(kDTTableType)tab
 {

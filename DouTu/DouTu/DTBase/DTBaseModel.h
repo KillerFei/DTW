@@ -47,5 +47,8 @@
 
 // 穿插模拟数据
 @property (nonatomic, assign) BOOL     insert;
+
+@property (nonatomic, strong) NSString *picUrl;
+
 @end
 

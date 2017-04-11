@@ -10,7 +10,7 @@
 
 @implementation UIButton (DT_Ex)
 
-+ (UIButton *)dtButtonWithTitle:(NSString *)title
++ (UIButton *)dtFuncButtonWithTitle:(NSString *)title
                           image:(UIImage *)image
                          target:(id)target
                          action:(SEL)action
@@ -25,4 +25,47 @@
     btn.layer.cornerRadius  = 17.5;
     return btn;
 }
+
++ (UIButton *)dtNormalButtonWithTitle:(NSString *)title
+                            titleFont:(UIFont *)titleFont
+                           titleColor:(UIColor *)titleColor
+                                image:(UIImage *)image
+                              bgColor:(UIColor *)bgColor
+                                bgImg:(UIImage *)bgImg
+                               target:(id)target
+                               action:(SEL)action
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.backgroundColor = bgColor;
+    btn.titleLabel.font = titleFont;
+    [btn setImage:image forState:UIControlStateNormal];
+    [btn setTitle:title forState:UIControlStateNormal];
+    [btn setTitleColor:titleColor forState:UIControlStateNormal];
+    [btn setBackgroundImage:[bgImg stretchableImageWithLeftCapWidth:15 topCapHeight:10] forState:UIControlStateNormal];
+    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    return btn;
+}
+
++ (UIButton *)dtCornerButtonWithTitle:(NSString *)title
+                            titleFont:(UIFont *)titleFont
+                           titleColor:(UIColor *)titleColor
+                                image:(UIImage *)image
+                              bgColor:(UIColor *)bgColor
+                                bgImg:(UIImage *)bgImg
+                                masks:(BOOL)mask
+                               radius:(CGFloat)radius
+                          borderColor:(UIColor *)borderColor
+                          borderWidth:(CGFloat)borderWidth
+                               target:(id)target
+                               action:(SEL)action;
+{
+    UIButton *btn = [UIButton dtNormalButtonWithTitle:title titleFont:titleFont titleColor:titleColor image:image bgColor:bgColor bgImg:bgImg target:self action:action];
+    btn.layer.masksToBounds = mask;
+    btn.layer.cornerRadius  = radius;
+    btn.layer.borderColor   = borderColor.CGColor;
+    btn.layer.borderWidth   = borderWidth;
+    
+    return btn;
+}
+
 @end

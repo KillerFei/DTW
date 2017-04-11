@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIView    *lineView;
 @property (nonatomic, strong) UIButton  *seletBtn;
+@property (nonatomic, strong) UIView    *bottomLineView;
 
 @end
 @implementation DTEditBtnView
@@ -23,6 +24,14 @@
         _lineView.backgroundColor = DT_Base_EdgeColor;
     }
     return _lineView;
+}
+- (UIView *)bottomLineView
+{
+    if (!_bottomLineView) {
+        _bottomLineView = [[UIView alloc] init];
+        _bottomLineView.backgroundColor = RGB(220, 220, 220);
+    }
+    return _bottomLineView;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -37,8 +46,8 @@
 - (void)addSubviews
 {
     self.backgroundColor = [UIColor whiteColor];
-    CGFloat btnWidth = KSCREEN_WIDTH/4;
-    for (int i = 0; i<4; i++) {
+    CGFloat btnWidth = KSCREEN_WIDTH/3;
+    for (int i = 0; i<3; i++) {
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitleColor:DT_Base_TitleColor forState:UIControlStateNormal];
@@ -46,7 +55,7 @@
         [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
         btn.tag = 1000+i;
         btn.titleLabel.font = DT_Base_TitleFont;
-        btn.frame = CGRectMake(0+btnWidth*i, 0, btnWidth, self.height);
+        btn.frame = CGRectMake(0+btnWidth*i, 0, btnWidth, self.height-1);
         switch (i) {
             case 0:
                 [btn setTitle:@"热门配文" forState:UIControlStateNormal];
@@ -54,12 +63,9 @@
                 _seletBtn = btn;
                 break;
             case 1:
-                [btn setTitle:@"文字色" forState:UIControlStateNormal];
-                break;
-            case 2:
                 [btn setTitle:@"背景色" forState:UIControlStateNormal];
                 break;
-            case 3:
+            case 2:
                 [btn setTitle:@"字体" forState:UIControlStateNormal];
                 break;
             default:
@@ -67,9 +73,12 @@
         }
         [self addSubview:btn];
     }
-    self.lineView.frame = CGRectMake(0, self.height-2, 65, 2);
+    self.lineView.frame = CGRectMake(0, self.height-3, 65, 2);
     self.lineView.centerX = self.seletBtn.centerX;
     [self addSubview:self.lineView];
+    
+    self.bottomLineView.frame = CGRectMake(0, self.height-1, KSCREEN_WIDTH, 1);
+    [self addSubview:self.bottomLineView];
 }
 #pragma mark -------- btnAction
 - (void)btnAction:(UIButton *)sender

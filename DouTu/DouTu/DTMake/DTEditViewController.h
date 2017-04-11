@@ -10,6 +10,6 @@
 
 @interface DTEditViewController : DTBaseViewController
 
-@property (nonatomic, strong) DTBaseModel *model;
+@property (nonatomic, strong) NSNumber *itemId;
 
 @end

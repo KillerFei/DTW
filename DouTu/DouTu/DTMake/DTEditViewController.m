@@ -10,39 +10,43 @@
 #import "DTEditBtnView.h"
 #import "DTEditFontView.h"
 #import "MSColorSelectionView.h"
+#import "DTShareView.h"
+#import "DTEditTextColorView.h"
+#import "DTEditTextView.h"
 
-@interface DTEditViewController ()<DTEditBtnViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,MSColorViewDelegate>
+@interface DTEditViewController ()<DTEditBtnViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,MSColorViewDelegate,DTShareViewDelegate,DTEditTextColorViewDelegate>
 
 {
     UIColor *_color;
 }
-@property (nonatomic, strong) UIView         *showBackView;
-@property (nonatomic, strong) UIImageView    *showView;
-@property (nonatomic, strong) UIButton       *qqBtn;
-@property (nonatomic, strong) UIButton       *wxBtn;
-@property (nonatomic, strong) UIButton       *collectBtn;
-@property (nonatomic, strong) UIButton       *saveBtn;
-@property (nonatomic, strong) UIView         *lineView;
-@property (nonatomic, strong) DTEditBtnView  *editView;
-@property (nonatomic, strong) UIScrollView   *editScrollView;
-@property (nonatomic, strong) UITableView    *editTab;
-@property (nonatomic, strong) UIView         *editFtColorView;
-@property (nonatomic, strong) UIView         *editBgColorView;
-@property (nonatomic, strong) UIView         *editFtView;
+@property (nonatomic, strong) UIView                 *showBackView;
+@property (nonatomic, strong) UIImageView            *showView;
+@property (nonatomic, strong) DTEditBtnView          *editView;
+@property (nonatomic, strong) UIScrollView           *editScrollView;
+@property (nonatomic, strong) UITableView            *editTab;
+@property (nonatomic, strong) MSColorSelectionView   *bgColorSectionView;
+@property (nonatomic, strong) UIView                 *editBgColorView;
+@property (nonatomic, strong) UIView                 *editFtView;
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
 
-@property (nonatomic, strong) UITextView     *wordView;
+@property (nonatomic, strong) NSMutableArray         *dataSource;
+@property (nonatomic, assign) NSInteger              pageNum;
+@property (nonatomic, strong) NSIndexPath            *seleteIndexPath;
+@property (nonatomic, strong) NSData                 *picData;
+@property (nonatomic, strong) DTBaseModel            *picModel;
 
-@property (nonatomic, strong) NSMutableArray *dataSource;
-@property (nonatomic, assign) NSInteger      pageNum;
-@property (nonatomic, strong) NSIndexPath    *seleteIndexPath;
-@property (nonatomic, strong) NSData         *picData;
-@property (nonatomic, strong) DTBaseModel    *picModel;
 
-@property (nonatomic, strong) MSColorSelectionView *bgColorSectionView;
-@property (nonatomic, strong) MSColorSelectionView *ftColorSectionView;
+@property (nonatomic, strong) DTEditFontView         *fontView;
 
-@property (nonatomic, strong) DTEditFontView *fontView;
+@property (nonatomic, strong) DTShareView            *shareView;
+
+@property (nonatomic, strong) DTBaseModel            *model;
+
+@property (nonatomic, strong) DTEditTextColorView    *textColorView;
+
+@property (nonatomic, strong) NSString               *gifPath;
+
+@property (nonatomic, strong) DTEditTextView         *textView;
 
 @end
 
@@ -68,42 +72,6 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     }
     return _showView;
 }
-- (UIButton *)qqBtn
-{
-    if (!_qqBtn) {
-        _qqBtn = [UIButton dtFuncButtonWithTitle:nil image:[UIImage imageNamed:@"dt_logo_qq_black"] target:self action:@selector(sendPicToQQ)];
-    }
-    return _qqBtn;
-}
-- (UIButton *)wxBtn
-{
-    if (!_wxBtn) {
-        _wxBtn = [UIButton dtFuncButtonWithTitle:nil image:[UIImage imageNamed:@"dt_logo_wx_black"] target:self action:@selector(sendPicToWx)];
-    }
-    return _wxBtn;
-}
-- (UIButton *)collectBtn
-{
-    if (!_collectBtn) {
-        _collectBtn = [UIButton dtFuncButtonWithTitle:nil image:[UIImage imageNamed:@"dt_down_em"] target:self action:@selector(sendPicToWx)];
-    }
-    return _collectBtn;
-}
-- (UIButton *)saveBtn
-{
-    if (!_saveBtn) {
-        _saveBtn = [UIButton dtFuncButtonWithTitle:nil image:[UIImage imageNamed:@"dt_favor_normal"] target:self action:@selector(sendPicToWx)];
-    }
-    return _saveBtn;
-}
-- (UIView *)lineView
-{
-    if (!_lineView) {
-        _lineView = [[UIView alloc] init];
-        _lineView.backgroundColor = RGB(220, 220, 220);
-    }
-    return _lineView;
-}
 #pragma mark --------- 编辑面板
 - (UIScrollView *)editScrollView
 {
@@ -125,28 +93,18 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     }
     return _editTab;
 }
-- (UITextView *)wordView
+- (DTEditTextView *)textView
 {
-    if (!_wordView) {
-        _wordView = [[UITextView alloc] init];
-        _wordView.scrollEnabled = NO;
-        _wordView.font = [UIFont systemFontOfSize:20];
-        _wordView.layer.cornerRadius = 2;
-        _wordView.layer.borderWidth = 1.f;
-        _wordView.layer.borderColor = DT_Base_EdgeColor.CGColor;
-        _wordView.textContainerInset = UIEdgeInsetsMake(3, 3, 3, 3);
-        _wordView.backgroundColor = [UIColor clearColor];
-        _wordView.delegate = self;
+    if (!_textView) {
+        _textView = [[DTEditTextView alloc] initWithFrame:CGRectZero];
+        _textView.layer.cornerRadius  = 2;
+        _textView.layer.borderWidth   = 1.f;
+        _textView.layer.borderColor   = DT_Base_EdgeColor.CGColor;
     }
-    return _wordView;
+    return _textView;
 }
-- (UIView *)editFtColorView
-{
-    if (!_editFtColorView) {
-        _editFtColorView = [[UIView alloc] init];
-    }
-    return _editFtColorView;
-}
+
+
 - (UIView *)editBgColorView
 {
     if (!_editBgColorView) {
@@ -164,15 +122,13 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     }
     return _bgColorSectionView;
 }
-- (MSColorSelectionView *)ftColorSectionView
+- (DTShareView *)shareView
 {
-    if (!_ftColorSectionView) {
-        _ftColorSectionView = [[MSColorSelectionView alloc] init];
-        _ftColorSectionView.color = self.view.backgroundColor;
-        _ftColorSectionView.delegate = self;
-        [_ftColorSectionView setSelectedIndex:0 animated:NO];
+    if (!_shareView) {
+        _shareView = [[DTShareView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _shareView.delegate = self;
     }
-    return _ftColorSectionView;
+    return _shareView;
 }
 - (NSMutableArray *)dataSource
 {
@@ -184,6 +140,7 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpSubViews];
+    [self setRightNavItem];
     [self setLeftBackNavItem];
     [self requestData];
 }
@@ -197,38 +154,69 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     [super viewWillDisappear:animated];
     [self.tabBarController.tabBar setHidden:NO];
 }
+- (void)setRightNavItem
+{
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStyleDone target:self action:@selector(rightItemAction)];
+    rightItem.tintColor = [UIColor blackColor];
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+- (void)rightItemAction
+{
+    [[UIApplication sharedApplication].keyWindow addSubview:self.shareView];
+    if ([_model.mediaType isEqual:0]) {
+        
+    } else {
+        NSArray *gifImg = self.showView.image.images;
+        CGFloat durtion = [UIImage sd_animatedGifDurationWithData:[[SDImageCache sharedImageCache] diskImageDataBySearchingAllPathsForKey:_model.gifPath]]/gifImg.count;
+        NSMutableArray *imgs = [[NSMutableArray alloc] init];
+        for (UIImage *image in gifImg) {
+//            if (!kStringIsEmpty(_textView.text)) {
+//                UIImage *img = [image addText:_wordView.text textRect:self.wordView.frame withAttributes:@{NSFontAttributeName:_wordView.font, NSForegroundColorAttributeName:_wordView.textColor, NSBackgroundColorAttributeName:_wordView.backgroundColor}];
+//                [imgs addObject:img];
+//            }
+        }
+        _gifPath = [UIImage pathWithImages:imgs gifPath:_model.gifPath durtion:durtion];  
+        [self.shareView configPic:_gifPath];
+    }
+}
 - (void)setUpSubViews
 {
-    _color = DT_Base_EdgeColor;
     self.view.backgroundColor = RGB(240, 240, 240);
-    _seleteIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    CGFloat imgWidth = 230*DT_Base_Scale;
-    CGFloat btnSpace = (KSCREEN_WIDTH-300*DT_Base_Scale-15)/2;
-    CGFloat space    = (imgWidth-190)/3;
-    self.showBackView.frame = CGRectMake(15, 15, imgWidth, imgWidth);
-    self.showView.frame = CGRectMake(0, 0, imgWidth, imgWidth);
-    self.qqBtn.frame = CGRectMake(self.showBackView.right+btnSpace, 50, 70*DT_Base_Scale, 35);
-    self.wxBtn.frame = CGRectMake(self.qqBtn.left, self.qqBtn.bottom+space, 70*DT_Base_Scale, 35);
-    self.collectBtn.frame = CGRectMake(self.qqBtn.left, self.wxBtn.bottom+space, 70*DT_Base_Scale, 35);
-    self.saveBtn.frame = CGRectMake(self.qqBtn.left, self.collectBtn.bottom+space, 70*DT_Base_Scale, 35);
     
+    _color           = DT_Base_EdgeColor;
+    _seleteIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    CGFloat imgWidth = 210;
+    // 添加展示图片
+    self.showBackView.frame = CGRectMake(15, 15, imgWidth, imgWidth);
+    self.showView.frame     = CGRectMake(0, 0, imgWidth, imgWidth);
+    [self.showBackView addSubview:self.showView];
+    [self.view addSubview:self.showBackView];
+    
+    // 添加背景颜色控件
+    self.textColorView = [[DTEditTextColorView alloc] initWithFrame:CGRectMake(self.showBackView.right, self.showBackView.top,KSCREEN_WIDTH-self.showBackView.right, self.showBackView.height)];
+    self.textColorView.delegate = self;
+    [self.view addSubview:self.textColorView];
+    
+    // 添加平移手势
     _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panAction:)];
     [self.showBackView addGestureRecognizer:_pan];
-    self.editView = [[DTEditBtnView alloc] initWithFrame:CGRectMake(0, self.showBackView.bottom+15, KSCREEN_WIDTH, 40)];
+    
+    // 添加选项按钮
+    self.editView          = [[DTEditBtnView alloc] initWithFrame:CGRectMake(0, self.showBackView.bottom+15, KSCREEN_WIDTH, 41)];
     self.editView.delegate = self;
+    [self.view addSubview:self.editView];
     
-    self.lineView.frame = CGRectMake(0, self.editView.bottom, KSCREEN_WIDTH, 1);
-    
-    CGFloat scrHeight = KSCREEN_HEIGHT-64-self.lineView.bottom;
-    self.editScrollView.frame = CGRectMake(0, self.lineView.bottom, KSCREEN_WIDTH, scrHeight);
-    self.editScrollView.delegate = self;
+    // 添加滑动选项
+    CGFloat scrHeight = KSCREEN_HEIGHT-self.editView.bottom-64;
+    self.editScrollView.frame         = CGRectMake(0, self.editView.bottom, KSCREEN_WIDTH, scrHeight);
+    self.editScrollView.delegate      = self;
     self.editScrollView.pagingEnabled = YES;
     
-    self.editTab.frame = CGRectMake(0, 0, KSCREEN_WIDTH, scrHeight);
-    self.editFtColorView.frame = CGRectMake(KSCREEN_WIDTH, 0, KSCREEN_WIDTH, scrHeight);
-    self.editBgColorView.frame = CGRectMake(KSCREEN_WIDTH*2, 0, KSCREEN_WIDTH, scrHeight);
-    self.ftColorSectionView.frame = CGRectMake(0, 0, KSCREEN_WIDTH, scrHeight);
-    self.bgColorSectionView.frame = CGRectMake(0, 0, scrHeight-100, scrHeight-100);
+    // 热门配文
+    self.editTab.frame             = CGRectMake(0, 0, KSCREEN_WIDTH, scrHeight);
+    // 文字背景
+    self.editBgColorView.frame     = CGRectMake(KSCREEN_WIDTH, 0, KSCREEN_WIDTH, scrHeight);
+    self.bgColorSectionView.frame  = CGRectMake(0, 0, scrHeight-100, scrHeight-100);
     self.bgColorSectionView.center = CGPointMake((KSCREEN_WIDTH-15-30)/2,scrHeight/2-50);
     CGFloat btnTop    = 20;
     CGFloat btnPace   = 10;
@@ -266,25 +254,16 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
         }
         [self.editBgColorView addSubview:bgBtn];
     }
+    self.fontView = [[DTEditFontView alloc] initWithFrame:CGRectMake(KSCREEN_WIDTH*2, 0, KSCREEN_WIDTH, scrHeight)];
     
-    self.fontView = [[DTEditFontView alloc] initWithFrame:CGRectMake(KSCREEN_WIDTH*3, 0, KSCREEN_WIDTH, scrHeight)];
-    [self.showBackView addSubview:self.showView];
-    [self.showBackView addSubview:self.wordView];
-    [self.view addSubview:self.showBackView];
-    [self.view addSubview:self.qqBtn];
-    [self.view addSubview:self.wxBtn];
-    [self.view addSubview:self.collectBtn];
-    [self.view addSubview:self.saveBtn];
-    [self.view addSubview:self.lineView];
-    [self.view addSubview:self.editView];
-    [self.view addSubview:self.editScrollView];
     [self.editScrollView addSubview:self.editTab];
-    
-    [self.editScrollView addSubview:self.editBgColorView];
-    [self.editScrollView addSubview:self.editFtColorView];
-    [self.editScrollView addSubview:self.fontView];
     [self.editBgColorView addSubview:self.bgColorSectionView];
-    [self.editFtColorView addSubview:self.ftColorSectionView];
+    [self.editScrollView addSubview:self.editBgColorView];
+    [self.editScrollView addSubview:self.fontView];
+    [self.view addSubview:_editScrollView];
+    
+    // 添加配文
+    [self.showBackView addSubview:self.textView];
 }
 #pragma mark ----------- setUpShowView
 - (void)setUpShowView
@@ -299,20 +278,21 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
 }
 - (void)refreshWithWord:(NSString *)word
 {
-    self.wordView.size = CGSizeMake(self.showBackView.width-10, self.showBackView.height);
-    self.wordView.text = word;
-    CGSize newSize = [self.wordView sizeThatFits:CGSizeMake(self.showBackView.width-10,MAXFLOAT)];
-    self.wordView.size = newSize;
-    self.wordView.centerX = self.showBackView.width/2;
-    self.wordView.bottom  = self.showBackView.height-5;
+//    self.wordView.size = CGSizeMake(self.showBackView.width-10, self.showBackView.height);
+//    self.wordView.text = word;
+//    CGSize newSize = [self.wordView sizeThatFits:CGSizeMake(self.showBackView.width-10,MAXFLOAT)];
+//    self.wordView.size = newSize;
+//    self.wordView.centerX = self.showBackView.width/2;
+//    self.wordView.bottom  = self.showBackView.height-5;
+    [self.textView refreshWithText:word font:[UIFont systemFontOfSize:20]];
 }
-#pragma mark ----------- request
+#pragma mark ----------- Request
 - (void)requestData
 {
-    if (!_model.itemId) {
+    if (!_itemId) {
         return;
     }
-    [DTNetManger getDetailWithItemId:_model.itemId callBack:^(NSError *error, NSArray *response, DTBaseModel *detailModel) {
+    [DTNetManger getDetailWithItemId:_itemId callBack:^(NSError *error, NSArray *response, DTBaseModel *detailModel) {
         
         if (!kArrayIsEmpty(response)) {
             _model = detailModel;
@@ -323,7 +303,7 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
         }
     }];
 }
-#pragma mark -----------  Tableview Delegate
+#pragma mark ----------- Tableview Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.dataSource.count;
@@ -343,33 +323,6 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     DTBaseModel *model = self.dataSource[indexPath.row];
     [self refreshWithWord:model.word];
 }
-#pragma mark -----------  Action
-- (void)sendPicToQQ
-{
-    if ([_model.mediaType isEqual:0]) {
-        
-    } else {
-        NSArray *gifImg = self.showView.image.images;
-        CGFloat durtion = [UIImage sd_animatedGifDurationWithData:[[SDImageCache sharedImageCache] diskImageDataBySearchingAllPathsForKey:_model.gifPath]]/gifImg.count;
-        NSMutableArray *imgs = [[NSMutableArray alloc] init];
-        for (UIImage *image in gifImg) {
-            if (!kStringIsEmpty(_wordView.text)) {
-                UIImage *img = [image addText:_wordView.text textRect:self.wordView.frame withAttributes:@{NSFontAttributeName:_wordView.font, NSForegroundColorAttributeName:_wordView.textColor, NSBackgroundColorAttributeName:_wordView.backgroundColor}];
-                [imgs addObject:img];
-            }
-        }
-        NSString *gifPath = [UIImage pathWithImages:imgs gifPath:_model.gifPath durtion:durtion];
-        [DTSendPicManager sendImageMessageToQQ:[NSData dataWithContentsOfFile:gifPath]];
-    }
-}
-- (void)sendPicToWx
-{
- 
-    
-    
-    
-    
-}
 #pragma mark ---------- EditView delegate
 - (void)seleteBtnAtIndex:(NSInteger)index
 {
@@ -385,78 +338,135 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     [self.editView refreshSeleteBtnAtIndex:i];
 }
 #pragma mark ---------- PanAction
-- (void)panAction:(UIPanGestureRecognizer *)panGes
-{
-    CGPoint transP = [panGes translationInView:self.showBackView];
-    //标签允许的最小位置处x
-    CGFloat minX = 0;
-    //标签允许的最大位置处x
-    CGFloat minY = 0;
-    CGFloat maxX = self.showBackView.width-self.wordView.width;
-    CGFloat maxY = self.showBackView.height-self.wordView.height;
-    switch (panGes.state) {
-            
-        case UIGestureRecognizerStateChanged: {
-            CGRect newFrame = self.wordView.frame;
-            if (transP.x > 0 ) {
-                newFrame.origin.x = MIN(maxX, transP.x + self.wordView.left);
-            } else {
-                newFrame.origin.x = MAX(minX, transP.x + self.wordView.left);
-            }
-            if (transP.y > 0) {
-                newFrame.origin.y = MIN(maxY, transP.y + self.wordView.top);
-            } else {
-                newFrame.origin.y = MAX(minY, transP.y + self.wordView.top);
-            }
-            self.wordView.frame = newFrame;
-            [panGes setTranslation:CGPointZero inView:self.showBackView];
-        }
-            break;
-        default:
-            break;
-    }
-}
+//- (void)panAction:(UIPanGestureRecognizer *)panGes
+//{
+//    CGPoint transP = [panGes translationInView:self.showBackView];
+//    //标签允许的最小位置处x
+//    CGFloat minX = 0;
+//    //标签允许的最大位置处x
+//    CGFloat minY = 0;
+//    CGFloat maxX = self.showBackView.width-self.wordView.width;
+//    CGFloat maxY = self.showBackView.height-self.wordView.height;
+//    switch (panGes.state) {
+//            
+//        case UIGestureRecognizerStateChanged: {
+//            CGRect newFrame = self.wordView.frame;
+//            if (transP.x > 0 ) {
+//                newFrame.origin.x = MIN(maxX, transP.x + self.wordView.left);
+//            } else {
+//                newFrame.origin.x = MAX(minX, transP.x + self.wordView.left);
+//            }
+//            if (transP.y > 0) {
+//                newFrame.origin.y = MIN(maxY, transP.y + self.wordView.top);
+//            } else {
+//                newFrame.origin.y = MAX(minY, transP.y + self.wordView.top);
+//            }
+//            self.wordView.frame = newFrame;
+//            [panGes setTranslation:CGPointZero inView:self.showBackView];
+//        }
+//            break;
+//        default:
+//            break;
+//    }
+//}
 #pragma mark ------ textView Delegate
--(void)textViewDidChange:(UITextView *)textView {
-    CGSize newSize = [self.wordView sizeThatFits:CGSizeMake(self.showBackView.width-10,MAXFLOAT)];
-    self.wordView.size = newSize;
-    self.wordView.centerX = self.showBackView.width/2;
-    self.wordView.bottom = self.showBackView.height-5;
-}
-- (void)colorView:(id<MSColorView>)colorView didChangeColor:(UIColor *)color
+//-(void)textViewDidChange:(UITextView *)textView {
+//    CGSize newSize = [self.wordView sizeThatFits:CGSizeMake(self.showBackView.width-10,MAXFLOAT)];
+//    self.wordView.size = newSize;
+//    self.wordView.centerX = self.showBackView.width/2;
+//    self.wordView.bottom = self.showBackView.height-5;
+//}
+//- (void)colorView:(id<MSColorView>)colorView didChangeColor:(UIColor *)color
+//{
+//    if (colorView == _bgColorSectionView) {
+//        self.wordView.backgroundColor = color;
+//    } else {
+//        self.wordView.textColor = color;
+//    }
+//}
+#pragma mark - BackgroundColor BtnAction:
+//- (void)bgBtnAction:(UIButton *)sender
+//{
+//    switch (sender.tag-10000) {
+//        case 0:
+//            self.bgColorSectionView.color = [UIColor blackColor];
+//            self.wordView.backgroundColor = [UIColor blackColor];
+//            break;
+//        case 1:
+//            self.bgColorSectionView.color = [UIColor whiteColor];
+//            self.wordView.backgroundColor = [UIColor whiteColor];
+//            break;
+//        case 2:
+//            self.bgColorSectionView.color = [UIColor redColor];
+//            self.wordView.backgroundColor = [UIColor redColor];
+//            break;
+//        case 3:
+//            self.bgColorSectionView.color = [UIColor greenColor];
+//            self.wordView.backgroundColor = [UIColor greenColor];
+//            break;
+//        case 4:
+//            self.bgColorSectionView.color = [UIColor blueColor];
+//            self.wordView.backgroundColor = [UIColor blueColor];
+//            break;
+//        default:
+//            break;
+//    }
+//}
+#pragma mark - DTEditTextColorViewDelegate
+- (void)didClickButtonAtIndex:(NSInteger)index
 {
-    if (colorView == _bgColorSectionView) {
-        self.wordView.backgroundColor = color;
+    if (index == 5) {
+        
     } else {
-        self.wordView.textColor = color;
+        
+        UIColor *color = [UIColor blackColor];
+        switch (index) {
+            case 0:
+                color = [UIColor blackColor];
+                break;
+            case 1:
+                color = [UIColor whiteColor];
+                break;
+            case 2:
+                color = [UIColor blueColor];
+                break;
+            case 3:
+                color = [UIColor greenColor];
+                break;
+            case 4:
+                color = [UIColor redColor];
+                break;
+            default:
+                break;
+        }
     }
 }
-#pragma mark - bgBtnAction:
-- (void)bgBtnAction:(UIButton *)sender
+#pragma mark - DTShareViewDelegate
+- (void)dtShareViewDidClickWXBtn
 {
-    switch (sender.tag-10000) {
-        case 0:
-            self.bgColorSectionView.color = [UIColor blackColor];
-            self.wordView.backgroundColor = [UIColor blackColor];
-            break;
-        case 1:
-            self.bgColorSectionView.color = [UIColor whiteColor];
-            self.wordView.backgroundColor = [UIColor whiteColor];
-            break;
-        case 2:
-            self.bgColorSectionView.color = [UIColor redColor];
-            self.wordView.backgroundColor = [UIColor redColor];
-            break;
-        case 3:
-            self.bgColorSectionView.color = [UIColor greenColor];
-            self.wordView.backgroundColor = [UIColor greenColor];
-            break;
-        case 4:
-            self.bgColorSectionView.color = [UIColor blueColor];
-            self.wordView.backgroundColor = [UIColor blueColor];
-            break;
-        default:
-            break;
+    
+}
+- (void)dtShareViewDidClickQQBtn
+{
+    
+}
+- (void)dtShareViewDidClickDownBtn
+{
+    [DTFouncManager downLoadPic:_gifPath];
+}
+- (void)dtShareViewDidClickBackBtn
+{
+    if (self.shareView && [self.shareView superview]) {
+        
+        [self.shareView removeFromSuperview];
     }
+}
+- (void)dtShareViewDidClickBackDIYBtn
+{
+    if (self.shareView && [self.shareView superview]) {
+        
+        [self.shareView removeFromSuperview];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

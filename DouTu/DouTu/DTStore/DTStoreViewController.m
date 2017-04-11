@@ -261,7 +261,7 @@
 - (void)editPic
 {
     DTEditViewController *editVC = [[DTEditViewController alloc] init];
-    editVC.model = _picModel;
+    editVC.itemId = _picModel.itemId;
     [self.navigationController pushViewController:editVC animated:YES];
 }
 @end

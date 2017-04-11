@@ -10,6 +10,9 @@
 
 @interface DTFouncManager : NSObject
 
++ (void)downLoadPic:(NSString *)picPath;
+
+
 + (void)savePic:(DTBaseModel *)pic
           toTab:(kDTTableType)tab;
 

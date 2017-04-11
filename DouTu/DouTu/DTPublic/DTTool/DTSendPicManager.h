@@ -22,4 +22,5 @@ typedef NS_ENUM(NSUInteger, DTSendChannelType)
 + (void)sendGifContentToWx:(NSData *)pic;
 + (void)sendImageMessageToQQ:(NSData *)pic;
 
+
 @end

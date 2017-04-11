@@ -84,7 +84,7 @@ static NSString *kDTReusableViewIdentifier   = @"dtReusableViewIdentifier";
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     DTEditViewController *editVC = [[DTEditViewController alloc] init];
     editVC.navTitle = @"改图";
-    editVC.model = self.dataSource[indexPath.item];
+    editVC.itemId = [self.dataSource[indexPath.item] pid];
     [self.navigationController pushViewController:editVC animated:YES];
 }
 @end
