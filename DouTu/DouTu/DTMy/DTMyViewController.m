@@ -24,7 +24,7 @@ static NSString *const kDTMyCellIdentifier = @"myCellIdentifier";
 {
     if (!_myTableView) {
         _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KSCREEN_WIDTH, KSCREEN_HEIGHT-64-49) style:UITableViewStyleGrouped];
-        _myTableView.rowHeight = 44;
+        _myTableView.rowHeight = 52;
         _myTableView.delegate   = self;
         _myTableView.dataSource = self;
         _myTableView.backgroundColor = RGB(249, 249, 249);
@@ -50,16 +50,7 @@ static NSString *const kDTMyCellIdentifier = @"myCellIdentifier";
 - (void)initItemMenu
 {
     NSMutableArray *section = [[NSMutableArray alloc] init];
-    NSNumber *number = [NSNumber numberWithInteger:kDTMyType_Send];
-    [section addObject:number];
-    number = [NSNumber numberWithInteger:kDTMyType_Make];
-    [section addObject:number];
-    number = [NSNumber numberWithInteger:kDTMyType_Collect];
-    [section addObject:number];
-    [self.dataSource addObject:section];
-    
-    section = [[NSMutableArray alloc] init];
-    number = [NSNumber numberWithInteger:kDTMyType_Help];
+    NSNumber *number = [NSNumber numberWithInteger:kDTMyType_Help];
     [section addObject:number];
  
     number = [NSNumber numberWithInteger:kDTMyType_Judge];
@@ -99,33 +90,18 @@ static NSString *const kDTMyCellIdentifier = @"myCellIdentifier";
 {
     DTMyTableViewCell *myCell = (DTMyTableViewCell *)cell;
     myCell.titleLabel.textColor = DT_Base_TitleColor;
-    myCell.iconView.hidden = NO;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     NSArray *items = self.dataSource[indexPath.section];
     NSInteger item = [items[indexPath.row] integerValue];
     switch (item) {
-        case kDTMyType_Send:
-            myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
-            myCell.titleLabel.text = @"我发送的";
-            break;
-        case kDTMyType_Make:
-            myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
-            myCell.titleLabel.text = @"我制作的";
-            break;
-        case kDTMyType_Collect:
-            myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
-            myCell.titleLabel.text = @"我收藏的";
-            break;
         case kDTMyType_Help:
             myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
             myCell.titleLabel.text = @"使用帮助";
             break;
         case kDTMyType_Clear:
-            myCell.iconView.hidden = YES;
+            myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
             myCell.titleLabel.text = @"清除缓存";
             myCell.titleLabel.textColor = RGB(255, 47, 57);
-            myCell.titleLabel.textAlignment = NSTextAlignmentCenter;
-            myCell.accessoryType = UITableViewCellAccessoryNone;
             break;
         case kDTMyType_Judge:
             myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
@@ -145,12 +121,6 @@ static NSString *const kDTMyCellIdentifier = @"myCellIdentifier";
     NSArray *items = self.dataSource[indexPath.section];
     NSInteger item = [items[indexPath.row] integerValue];
     switch (item) {
-        case kDTMyType_Send:
-            break;
-        case kDTMyType_Make:
-            break;
-        case kDTMyType_Collect:
-            break;
         case kDTMyType_Help:
             break;
         case kDTMyType_Clear:

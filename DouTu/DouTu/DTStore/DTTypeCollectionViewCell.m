@@ -38,10 +38,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.layer.masksToBounds = YES;
-        self.contentView.layer.cornerRadius  = 5;
-        self.contentView.layer.borderColor   = DT_Base_GrayEdgeColor.CGColor;
-        self.contentView.layer.borderWidth   = 0.5;
+//        self.contentView.layer.masksToBounds = YES;
+//        self.contentView.layer.cornerRadius  = 5;
+//        self.contentView.layer.borderColor   = DT_Base_GrayEdgeColor.CGColor;
+//        self.contentView.layer.borderWidth   = 0.5;
         [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.titleLabel];
     }

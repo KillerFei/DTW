@@ -12,7 +12,6 @@
 #import "MSColorSelectionView.h"
 #import "DTShareView.h"
 #import "DTEditTextColorView.h"
-#import "DTEditTextView.h"
 
 @interface DTEditViewController ()<DTEditBtnViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,MSColorViewDelegate,DTShareViewDelegate,DTEditTextColorViewDelegate>
 
@@ -46,7 +45,7 @@
 
 @property (nonatomic, strong) NSString               *gifPath;
 
-@property (nonatomic, strong) DTEditTextView         *textView;
+@property (nonatomic, strong) UITextView             *textView;
 
 @end
 
@@ -93,18 +92,24 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     }
     return _editTab;
 }
-- (DTEditTextView *)textView
+- (UITextView *)textView
 {
     if (!_textView) {
-        _textView = [[DTEditTextView alloc] initWithFrame:CGRectZero];
+        _textView = [[UITextView alloc] initWithFrame:CGRectZero];
+        _textView.backgroundColor     = [UIColor clearColor];
+        _textView.font                = DT_Base_TitleFont;
         _textView.layer.cornerRadius  = 2;
         _textView.layer.borderWidth   = 1.f;
         _textView.layer.borderColor   = DT_Base_EdgeColor.CGColor;
+        _textView.layer.shadowOpacity = 1;
+        _textView.layer.shadowColor   = [UIColor whiteColor].CGColor;
+        _textView.layer.shadowOffset  = CGSizeMake(4, 4);
+        _textView.layer.shadowRadius  = 5;
+        _textView.scrollEnabled       = NO;
+        _textView.delegate            = self;
     }
     return _textView;
 }
-
-
 - (UIView *)editBgColorView
 {
     if (!_editBgColorView) {
@@ -156,9 +161,14 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
 }
 - (void)setRightNavItem
 {
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"分享" style:UIBarButtonItemStyleDone target:self action:@selector(rightItemAction)];
-    rightItem.tintColor = [UIColor blackColor];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightBtn setTitle:@"分享" forState:UIControlStateNormal];
+    [rightBtn setTitleColor:DT_Nav_TitleColor forState:UIControlStateNormal];
+    rightBtn.titleLabel.font = DT_Nav_TitleFont;
+    rightBtn.titleLabel.textAlignment = NSTextAlignmentRight;
+    rightBtn.frame = CGRectMake(0, 0, 50, 44);
+    [rightBtn addTarget:self action:@selector(rightItemAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
 }
 - (void)rightItemAction
 {
@@ -230,7 +240,7 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
         bgBtn.tag = 10000+i;
         bgBtn.layer.masksToBounds = YES;
         bgBtn.layer.cornerRadius  = 5;
-        [bgBtn addTarget:self action:@selector(bgBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [bgBtn addTarget:self action:@selector(bgBtnAction:) forControlEvents: UIControlEventTouchUpInside];
         switch (i) {
             case 0:
                 bgBtn.backgroundColor = [UIColor blackColor];
@@ -241,13 +251,13 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
                 bgBtn.layer.borderWidth = 1;
                 break;
             case 2:
-                bgBtn.backgroundColor = [UIColor redColor];
+                bgBtn.backgroundColor = [UIColor blueColor];
                 break;
             case 3:
                 bgBtn.backgroundColor = [UIColor greenColor];
                 break;
             case 4:
-                bgBtn.backgroundColor = [UIColor blueColor];
+                bgBtn.backgroundColor = [UIColor redColor];
                 break;
             default:
                 break;
@@ -278,13 +288,12 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
 }
 - (void)refreshWithWord:(NSString *)word
 {
-//    self.wordView.size = CGSizeMake(self.showBackView.width-10, self.showBackView.height);
-//    self.wordView.text = word;
-//    CGSize newSize = [self.wordView sizeThatFits:CGSizeMake(self.showBackView.width-10,MAXFLOAT)];
-//    self.wordView.size = newSize;
-//    self.wordView.centerX = self.showBackView.width/2;
-//    self.wordView.bottom  = self.showBackView.height-5;
-    [self.textView refreshWithText:word font:[UIFont systemFontOfSize:20]];
+    self.textView.text = word;
+    CGSize textSize = [self.textView sizeThatFits:CGSizeMake(self.showBackView.width-20, MAXFLOAT)];
+    self.textView.width   = textSize.width;
+    self.textView.height  = textSize.height;
+    self.textView.centerX = self.showView.width/2;
+    self.textView.bottom  = self.showView.height-10;
 }
 #pragma mark ----------- Request
 - (void)requestData
@@ -337,104 +346,101 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     NSInteger i  = self.editScrollView.contentOffset.x / KSCREEN_WIDTH;
     [self.editView refreshSeleteBtnAtIndex:i];
 }
-#pragma mark ---------- PanAction
-//- (void)panAction:(UIPanGestureRecognizer *)panGes
-//{
-//    CGPoint transP = [panGes translationInView:self.showBackView];
-//    //标签允许的最小位置处x
-//    CGFloat minX = 0;
-//    //标签允许的最大位置处x
-//    CGFloat minY = 0;
-//    CGFloat maxX = self.showBackView.width-self.wordView.width;
-//    CGFloat maxY = self.showBackView.height-self.wordView.height;
-//    switch (panGes.state) {
-//            
-//        case UIGestureRecognizerStateChanged: {
-//            CGRect newFrame = self.wordView.frame;
-//            if (transP.x > 0 ) {
-//                newFrame.origin.x = MIN(maxX, transP.x + self.wordView.left);
-//            } else {
-//                newFrame.origin.x = MAX(minX, transP.x + self.wordView.left);
-//            }
-//            if (transP.y > 0) {
-//                newFrame.origin.y = MIN(maxY, transP.y + self.wordView.top);
-//            } else {
-//                newFrame.origin.y = MAX(minY, transP.y + self.wordView.top);
-//            }
-//            self.wordView.frame = newFrame;
-//            [panGes setTranslation:CGPointZero inView:self.showBackView];
-//        }
-//            break;
-//        default:
-//            break;
-//    }
-//}
-#pragma mark ------ textView Delegate
-//-(void)textViewDidChange:(UITextView *)textView {
-//    CGSize newSize = [self.wordView sizeThatFits:CGSizeMake(self.showBackView.width-10,MAXFLOAT)];
-//    self.wordView.size = newSize;
-//    self.wordView.centerX = self.showBackView.width/2;
-//    self.wordView.bottom = self.showBackView.height-5;
-//}
-//- (void)colorView:(id<MSColorView>)colorView didChangeColor:(UIColor *)color
-//{
-//    if (colorView == _bgColorSectionView) {
-//        self.wordView.backgroundColor = color;
-//    } else {
-//        self.wordView.textColor = color;
-//    }
-//}
-#pragma mark - BackgroundColor BtnAction:
-//- (void)bgBtnAction:(UIButton *)sender
-//{
-//    switch (sender.tag-10000) {
-//        case 0:
-//            self.bgColorSectionView.color = [UIColor blackColor];
-//            self.wordView.backgroundColor = [UIColor blackColor];
-//            break;
-//        case 1:
-//            self.bgColorSectionView.color = [UIColor whiteColor];
-//            self.wordView.backgroundColor = [UIColor whiteColor];
-//            break;
-//        case 2:
-//            self.bgColorSectionView.color = [UIColor redColor];
-//            self.wordView.backgroundColor = [UIColor redColor];
-//            break;
-//        case 3:
-//            self.bgColorSectionView.color = [UIColor greenColor];
-//            self.wordView.backgroundColor = [UIColor greenColor];
-//            break;
-//        case 4:
-//            self.bgColorSectionView.color = [UIColor blueColor];
-//            self.wordView.backgroundColor = [UIColor blueColor];
-//            break;
-//        default:
-//            break;
-//    }
-//}
-#pragma mark - DTEditTextColorViewDelegate
-- (void)didClickButtonAtIndex:(NSInteger)index
+#pragma mark ---------- PanAction 输入框移动
+- (void)panAction:(UIPanGestureRecognizer *)panGes
+{
+    CGPoint transP = [panGes translationInView:self.showBackView];
+    //标签允许的最小位置处x
+    CGFloat minX = 0;
+    //标签允许的最大位置处x
+    CGFloat minY = 0;
+    CGFloat maxX = self.showBackView.width-self.textView.width;
+    CGFloat maxY = self.showBackView.height-self.textView.height;
+    switch (panGes.state) {
+            
+        case UIGestureRecognizerStateChanged: {
+            CGRect newFrame = self.textView.frame;
+            if (transP.x > 0 ) {
+                newFrame.origin.x = MIN(maxX, transP.x + self.textView.left);
+            } else {
+                newFrame.origin.x = MAX(minX, transP.x + self.textView.left);
+            }
+            if (transP.y > 0) {
+                newFrame.origin.y = MIN(maxY, transP.y + self.textView.top);
+            } else {
+                newFrame.origin.y = MAX(minY, transP.y + self.textView.top);
+            }
+            self.textView.frame = newFrame;
+            [panGes setTranslation:CGPointZero inView:self.showBackView];
+        }
+            break;
+        default:
+            break;
+    }
+}
+#pragma mark ------ textView Delegate 输入框代理
+-(void)textViewDidChange:(UITextView *)textView {
+    
+    CGSize textSize = [self.textView sizeThatFits:CGSizeMake(self.showBackView.width-20, MAXFLOAT)];
+    self.textView.width  = textSize.width;
+    self.textView.height = textSize.height;
+    self.textView.centerX = self.showView.width/2;
+    self.textView.bottom  = self.showView.height-10;
+}
+- (void)colorView:(id<MSColorView>)colorView didChangeColor:(UIColor *)color
+{
+    self.textView.backgroundColor = color;
+}
+#pragma mark - BackgroundColor BtnAction 背景颜色
+- (void)bgBtnAction:(UIButton *)sender
+{
+    switch (sender.tag-10000) {
+        case 0:
+            self.textView.backgroundColor = [UIColor blackColor];
+            break;
+        case 1:
+            self.textView.backgroundColor = [UIColor whiteColor];
+            break;
+        case 2:
+            self.textView.backgroundColor = [UIColor blueColor];
+            break;
+        case 3:
+            self.textView.backgroundColor = [UIColor greenColor];
+            break;
+        case 4:
+            self.textView.backgroundColor = [UIColor redColor];
+            break;
+        default:
+            break;
+    }
+}
+#pragma mark - DTEditTextColorViewDelegate 文字颜色
+- (void)didClickButton:(UIButton *)btn AtIndex:(NSInteger)index
 {
     if (index == 5) {
         
+        if (btn.selected) {
+            self.textView.font = [UIFont systemFontOfSize:15];
+        } else {
+            self.textView.font = [UIFont boldSystemFontOfSize:15];
+        }
+        btn.selected = !btn.selected;
     } else {
-        
-        UIColor *color = [UIColor blackColor];
         switch (index) {
             case 0:
-                color = [UIColor blackColor];
+                self.textView.textColor = [UIColor blackColor];
                 break;
             case 1:
-                color = [UIColor whiteColor];
+                self.textView.textColor = [UIColor whiteColor];
                 break;
             case 2:
-                color = [UIColor blueColor];
+                self.textView.textColor = [UIColor blueColor];
                 break;
             case 3:
-                color = [UIColor greenColor];
+                self.textView.textColor = [UIColor greenColor];
                 break;
             case 4:
-                color = [UIColor redColor];
+                self.textView.textColor = [UIColor redColor];
                 break;
             default:
                 break;

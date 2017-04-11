@@ -32,7 +32,9 @@
 //基本UI
 #define DT_TabBar_SeleteColor      RGB(254, 203, 47)
 
-#define DT_Nav_TitleColor          RGB(112, 112, 112)
+//#define DT_Nav_TitleColor          RGB(112, 112, 112)
+#define DT_Nav_TitleColor          [UIColor blackColor]
+
 #define DT_Nav_TitleFont           BOLD_FONT(16)
 
 //#define DT_Base_TitleColor         RGB(112, 112, 112)

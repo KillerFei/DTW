@@ -10,9 +10,6 @@
 
 typedef NS_ENUM(NSInteger, DTMyType)
 {
-    kDTMyType_Send = 0,
-    kDTMyType_Make,
-    kDTMyType_Collect,
     kDTMyType_Help,
     kDTMyType_Declaration,
     kDTMyType_Clear,

@@ -36,11 +36,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.backgroundColor = [UIColor whiteColor];
-        self.contentView.layer.masksToBounds = YES;
-        self.contentView.layer.cornerRadius  = 5;
-        self.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
-        self.contentView.layer.borderWidth   = 1.f;
+//        self.contentView.backgroundColor = [UIColor whiteColor];
+//        self.contentView.layer.masksToBounds = YES;
+//        self.contentView.layer.cornerRadius  = 5;
+//        self.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
+//        self.contentView.layer.borderWidth   = 1.f;
         [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.nameLab];
     }

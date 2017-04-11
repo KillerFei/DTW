@@ -144,11 +144,11 @@
     NSArray *pics = [self.dataSource objectForKey:@"news"];
     [cell configModel:pics[indexPath.item]];
     if (_seleteIndexPath == indexPath && _bShow) {
-        cell.contentView.layer.borderColor = DT_Base_EdgeColor.CGColor;
-        cell.contentView.layer.borderWidth   = 2.f;
+//        cell.contentView.layer.borderColor = DT_Base_EdgeColor.CGColor;
+//        cell.contentView.layer.borderWidth   = 2.f;
     } else {
-        cell.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
-        cell.contentView.layer.borderWidth   = 0.5f;
+//        cell.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
+//        cell.contentView.layer.borderWidth   = 0.5f;
     }
     return cell;
 }

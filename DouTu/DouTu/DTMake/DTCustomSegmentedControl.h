@@ -13,7 +13,6 @@
 - (void)didSeleteSegmentedControlAtIndex:(NSInteger)index;
 
 @end
-
 @interface DTCustomSegmentedControl : UIImageView
 
 @property (nonatomic, assign) id<DTCustomSegmentedControlDelegate>delegate;

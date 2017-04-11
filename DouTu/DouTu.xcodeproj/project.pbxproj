@@ -79,14 +79,12 @@
 		FBBF7BA21E8B5142001BC784 /* DTCustomSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = FBBF7BA11E8B5142001BC784 /* DTCustomSegmentedControl.m */; };
 		FBCD31701E8A294F00A94FB2 /* DTTypeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCD316F1E8A294F00A94FB2 /* DTTypeCollectionViewCell.m */; };
 		FBCD31731E8A3E3C00A94FB2 /* DTTextCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCD31721E8A3E3C00A94FB2 /* DTTextCollectionViewCell.m */; };
-		FBCD31761E8A469D00A94FB2 /* DTDIYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCD31751E8A469D00A94FB2 /* DTDIYViewController.m */; };
 		FBCD31791E8A46EB00A94FB2 /* DTMakeHotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBCD31781E8A46EB00A94FB2 /* DTMakeHotViewController.m */; };
 		FBCD317D1E8A53CE00A94FB2 /* dt_make_seg_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBCD317A1E8A53CE00A94FB2 /* dt_make_seg_bg@2x.png */; };
 		FBCD317E1E8A53CE00A94FB2 /* dt_make_seg_btn_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBCD317B1E8A53CE00A94FB2 /* dt_make_seg_btn_right@2x.png */; };
 		FBCD317F1E8A53CE00A94FB2 /* dt_make_seg_btn_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBCD317C1E8A53CE00A94FB2 /* dt_make_seg_btn_left@2x.png */; };
 		FBD72F201E7D904A00FF45B7 /* DTFouncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD72F1F1E7D904A00FF45B7 /* DTFouncManager.m */; };
 		FBD991961E7C467D00B00999 /* DTMyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD991951E7C467D00B00999 /* DTMyTableViewCell.m */; };
-		FBDE73E51E95EA1800212AFD /* DTEditTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDE73E41E95EA1800212AFD /* DTEditTextView.m */; };
 		FBDE73E81E95EFB600212AFD /* dt_edit_text_rotate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBDE73E61E95EFB600212AFD /* dt_edit_text_rotate@2x.png */; };
 		FBDE73E91E95EFB600212AFD /* dt_edit_text_pull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBDE73E71E95EFB600212AFD /* dt_edit_text_pull@2x.png */; };
 		FBE227A51E7CE3650098BB5A /* DTOnlineManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE227A41E7CE3650098BB5A /* DTOnlineManager.m */; };
@@ -247,10 +245,8 @@
 		FBCD316F1E8A294F00A94FB2 /* DTTypeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTypeCollectionViewCell.m; sourceTree = "<group>"; };
 		FBCD31711E8A3E3C00A94FB2 /* DTTextCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTTextCollectionViewCell.h; sourceTree = "<group>"; };
 		FBCD31721E8A3E3C00A94FB2 /* DTTextCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTTextCollectionViewCell.m; sourceTree = "<group>"; };
-		FBCD31741E8A469D00A94FB2 /* DTDIYViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTDIYViewController.h; sourceTree = "<group>"; };
-		FBCD31751E8A469D00A94FB2 /* DTDIYViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTDIYViewController.m; sourceTree = "<group>"; };
-		FBCD31771E8A46EB00A94FB2 /* DTMakeHotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTMakeHotViewController.h; sourceTree = "<group>"; };
-		FBCD31781E8A46EB00A94FB2 /* DTMakeHotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTMakeHotViewController.m; sourceTree = "<group>"; };
+		FBCD31771E8A46EB00A94FB2 /* DTMakeHotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTMakeHotViewController.h; path = ../DTMakeHotViewController.h; sourceTree = "<group>"; };
+		FBCD31781E8A46EB00A94FB2 /* DTMakeHotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTMakeHotViewController.m; path = ../DTMakeHotViewController.m; sourceTree = "<group>"; };
 		FBCD317A1E8A53CE00A94FB2 /* dt_make_seg_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_make_seg_bg@2x.png"; sourceTree = "<group>"; };
 		FBCD317B1E8A53CE00A94FB2 /* dt_make_seg_btn_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_make_seg_btn_right@2x.png"; sourceTree = "<group>"; };
 		FBCD317C1E8A53CE00A94FB2 /* dt_make_seg_btn_left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_make_seg_btn_left@2x.png"; sourceTree = "<group>"; };
@@ -258,8 +254,6 @@
 		FBD72F1F1E7D904A00FF45B7 /* DTFouncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTFouncManager.m; sourceTree = "<group>"; };
 		FBD991941E7C467D00B00999 /* DTMyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTMyTableViewCell.h; sourceTree = "<group>"; };
 		FBD991951E7C467D00B00999 /* DTMyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTMyTableViewCell.m; sourceTree = "<group>"; };
-		FBDE73E31E95EA1800212AFD /* DTEditTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTEditTextView.h; sourceTree = "<group>"; };
-		FBDE73E41E95EA1800212AFD /* DTEditTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTEditTextView.m; sourceTree = "<group>"; };
 		FBDE73E61E95EFB600212AFD /* dt_edit_text_rotate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_edit_text_rotate@2x.png"; sourceTree = "<group>"; };
 		FBDE73E71E95EFB600212AFD /* dt_edit_text_pull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_edit_text_pull@2x.png"; sourceTree = "<group>"; };
 		FBE227A31E7CE3650098BB5A /* DTOnlineManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTOnlineManager.h; sourceTree = "<group>"; };
@@ -631,28 +625,24 @@
 		FB76FC6C1E77C5C3005F6C44 /* DTMake */ = {
 			isa = PBXGroup;
 			children = (
-				FBCD31741E8A469D00A94FB2 /* DTDIYViewController.h */,
-				FBCD31751E8A469D00A94FB2 /* DTDIYViewController.m */,
+				FBD416BE1E9CAEB5009C22F0 /* DTCate */,
+				FBD416BD1E9CAEA7009C22F0 /* DTNew */,
 				FB76FC771E77D2B8005F6C44 /* DTMakeViewController.h */,
 				FB76FC781E77D2B8005F6C44 /* DTMakeViewController.m */,
-				FBCD31771E8A46EB00A94FB2 /* DTMakeHotViewController.h */,
-				FBCD31781E8A46EB00A94FB2 /* DTMakeHotViewController.m */,
 				FBEFF4A91E7E57B900E95DCF /* DTMakeHeaderCell.h */,
 				FBEFF4AA1E7E57B900E95DCF /* DTMakeHeaderCell.m */,
 				FB289FBE1E839F3100CB6B89 /* DTEditViewController.h */,
 				FB289FBF1E839F3100CB6B89 /* DTEditViewController.m */,
 				FB434BDE1E80C9870016089C /* DTEditBtnView.h */,
 				FB434BDF1E80C9870016089C /* DTEditBtnView.m */,
-				FB434BFF1E81129C0016089C /* DTEditFontView.h */,
 				FBE33CF71E94BD99007A033A /* DTEditTextColorView.h */,
 				FBE33CF81E94BD99007A033A /* DTEditTextColorView.m */,
+				FB434BFF1E81129C0016089C /* DTEditFontView.h */,
 				FB434C001E81129C0016089C /* DTEditFontView.m */,
-				FBBF7BA01E8B5142001BC784 /* DTCustomSegmentedControl.h */,
-				FBBF7BA11E8B5142001BC784 /* DTCustomSegmentedControl.m */,
 				FBED59A01E9094F3006200EF /* DTShareView.h */,
 				FBED59A11E9094F3006200EF /* DTShareView.m */,
-				FBDE73E31E95EA1800212AFD /* DTEditTextView.h */,
-				FBDE73E41E95EA1800212AFD /* DTEditTextView.m */,
+				FBBF7BA01E8B5142001BC784 /* DTCustomSegmentedControl.h */,
+				FBBF7BA11E8B5142001BC784 /* DTCustomSegmentedControl.m */,
 			);
 			path = DTMake;
 			sourceTree = "<group>";
@@ -689,6 +679,22 @@
 				FB76FC801E77D861005F6C44 /* DTNetManger.m */,
 			);
 			path = DTNetManger;
+			sourceTree = "<group>";
+		};
+		FBD416BD1E9CAEA7009C22F0 /* DTNew */ = {
+			isa = PBXGroup;
+			children = (
+				FBCD31771E8A46EB00A94FB2 /* DTMakeHotViewController.h */,
+				FBCD31781E8A46EB00A94FB2 /* DTMakeHotViewController.m */,
+			);
+			path = DTNew;
+			sourceTree = "<group>";
+		};
+		FBD416BE1E9CAEB5009C22F0 /* DTCate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DTCate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -864,7 +870,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBCD31791E8A46EB00A94FB2 /* DTMakeHotViewController.m in Sources */,
-				FBDE73E51E95EA1800212AFD /* DTEditTextView.m in Sources */,
 				FB07BA931E8634B0009478ED /* MSColorSelectionViewController.m in Sources */,
 				FBE8E42A1E895C4700587BE1 /* DTTypeModel.m in Sources */,
 				FB76FC431E779B0B005F6C44 /* AppDelegate.m in Sources */,
@@ -912,7 +917,6 @@
 				FB0B98841E7A90920059762F /* UIView+DT_Ex.m in Sources */,
 				FBD991961E7C467D00B00999 /* DTMyTableViewCell.m in Sources */,
 				FBE8E4301E8961A500587BE1 /* DTAllTypeViewController.m in Sources */,
-				FBCD31761E8A469D00A94FB2 /* DTDIYViewController.m in Sources */,
 				FB07BA911E8634B0009478ED /* MSColorComponentView.m in Sources */,
 				FB76FC5E1E77A0C2005F6C44 /* DTBaseViewController.m in Sources */,
 			);

@@ -18,6 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [self setUpBaseNetwork];
+    [self setUpSDWebImage];
     [self setUpKeyWindow];
     //向微信注册
     [WXApi registerApp:@"wxd930ea5d5a258f4f"];
@@ -38,6 +39,13 @@
     [HYBNetworking obtainDataFromLocalWhenNetworkUnconnected:YES];  //网络异常时本地获取数据
     [HYBNetworking cacheGetRequest:YES shoulCachePost:YES];         //数据缓存
     [HYBNetworking setTimeout:20.f];                                //超时回调
+}
+#pragma mark - setUpSDWebImage
+- (void)setUpSDWebImage
+{
+    [[SDImageCache sharedImageCache] setShouldDecompressImages:NO];
+    [[SDImageCache sharedImageCache] setMaxCacheAge:60 * 60 * 24 * 7 * 12]; //三个月清除
+    [[SDWebImageDownloader sharedDownloader] setShouldDecompressImages:NO];
 }
 #pragma mark - setUpKeyWindow
 - (void)setUpKeyWindow

@@ -61,8 +61,8 @@
 #pragma mark - ButtonAction
 - (void)buttonAction:(UIButton *)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(didClickButtonAtIndex:)]) {
-        [_delegate didClickButtonAtIndex:sender.tag-10000];
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickButton:AtIndex:)]) {
+        [_delegate didClickButton:sender AtIndex:sender.tag-10000];
     }
 }
 @end

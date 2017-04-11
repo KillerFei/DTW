@@ -10,8 +10,8 @@
 
 @protocol DTEditTextColorViewDelegate<NSObject>
 
-- (void)didClickButtonAtIndex:(NSInteger)index;
-- (void)didSeletColor:(UIColor *)color;
+- (void)didClickButton:(UIButton *)btn
+               AtIndex:(NSInteger)index;
 @end
 
 @interface DTEditTextColorView : UIView
