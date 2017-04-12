@@ -18,9 +18,24 @@
     //绘制上下文
     UIGraphicsBeginImageContext(CGSizeMake(210, 210));
     [self drawInRect:CGRectMake(0,0, 210, 210)];
-    [text drawInRect:rect withAttributes:attributes];
+ 
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 5.0);
+    CGContextSetLineJoin(context, kCGLineJoinRound);
+    CGContextSetStrokeColorWithColor(context, [UIColor whiteColor].CGColor);
+    CGContextSetTextDrawingMode(context, kCGTextStroke);
+    [@"公司：北京中软科技股份有限公司\n部门：ERP事业部\n姓名：McLiang" drawInRect:CGRectMake(20, 40, 280, 300) withAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    CGContextSetTextDrawingMode(context, kCGTextFill);
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);;
+    [@"公司：北京中软科技股份有限公司\n部门：ERP事业部\n姓名：McLiang" drawInRect:CGRectMake(20, 40, 280, 300) withAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
+    
+    
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    
+   
+    
     return newImage;
 }
 

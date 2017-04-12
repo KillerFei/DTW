@@ -11,6 +11,7 @@
 @interface DTBaseCollectionViewCell ()
 
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *cornerView;
 @end
 @implementation DTBaseCollectionViewCell
 - (UIImageView *)imageView
@@ -20,6 +21,15 @@
     }
     return _imageView;
 }
+- (UIImageView *)cornerView
+{
+    if (!_cornerView) {
+        _cornerView = [[UIImageView alloc] init];
+        _cornerView.image = [[UIImage imageNamed:@"dt_base_corner_bg"] stretchableImageWithLeftCapWidth:12.5 topCapHeight:12.5];
+    }
+    return _cornerView;
+}
+
 - (UILabel *)nameLab
 {
     if (!_nameLab) {
@@ -36,13 +46,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        self.contentView.backgroundColor = [UIColor whiteColor];
-//        self.contentView.layer.masksToBounds = YES;
-//        self.contentView.layer.cornerRadius  = 5;
-//        self.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
-//        self.contentView.layer.borderWidth   = 1.f;
         [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.nameLab];
+        [self.contentView addSubview:self.cornerView];
     }
     return self;
 }
@@ -58,6 +64,10 @@
         make.bottom.right.equalTo(self.contentView).with.offset(-5);
         make.height.mas_equalTo(@9);
     }];
+    [_cornerView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.left.bottom.right.equalTo(self.contentView);
+    }];
 }
 - (void)configModel:(DTBaseModel *)model
 {
@@ -69,6 +79,15 @@
     }
     _nameLab.text = model.name;
 }
+- (void)resetCornerView
+{
+    _cornerView.image = [[UIImage imageNamed:@"dt_base_corner_bg"] stretchableImageWithLeftCapWidth:12.5 topCapHeight:12.5];
+}
+- (void)seleteCornerView
+{
+    _cornerView.image = [[UIImage imageNamed:@"dt_base_corner_bg_ye"] stretchableImageWithLeftCapWidth:12.5 topCapHeight:12.5];
+}
+
 - (void)prepareForReuse
 {
     [super prepareForReuse];

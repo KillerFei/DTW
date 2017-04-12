@@ -12,5 +12,7 @@
 @property (nonatomic, strong) UILabel   *nameLab;
 
 - (void)configModel:(DTBaseModel *)model;
+- (void)resetCornerView;
+- (void)seleteCornerView;
 
 @end

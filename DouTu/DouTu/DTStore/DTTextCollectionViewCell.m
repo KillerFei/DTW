@@ -11,6 +11,7 @@
 @interface DTTextCollectionViewCell ()
 
 @property (nonatomic, strong) UILabel     *titleLabel;
+@property (nonatomic, strong) UIImageView *cornerView;
 @end
 @implementation DTTextCollectionViewCell
 - (UILabel *)titleLabel
@@ -23,15 +24,20 @@
     }
     return _titleLabel;
 }
+- (UIImageView *)cornerView
+{
+    if (!_cornerView) {
+        _cornerView = [[UIImageView alloc] init];
+        _cornerView.image = [[UIImage imageNamed:@"dt_base_corner_bg"] stretchableImageWithLeftCapWidth:12.5 topCapHeight:12.5];
+    }
+    return _cornerView;
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        self.contentView.layer.masksToBounds = YES;
-//        self.contentView.layer.cornerRadius  = 5;
-//        self.contentView.layer.borderColor   = DT_Base_GrayEdgeColor.CGColor;
-//        self.contentView.layer.borderWidth   = 0.5;
         [self.contentView addSubview:self.titleLabel];
+        [self.contentView addSubview:self.cornerView];
     }
     return self;
 }
@@ -39,6 +45,11 @@
 {
     [super layoutSubviews];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.left.bottom.right.equalTo(self.contentView);
+    }];
+    [_cornerView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
         make.top.left.bottom.right.equalTo(self.contentView);
     }];
 }

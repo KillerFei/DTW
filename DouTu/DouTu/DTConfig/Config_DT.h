@@ -30,7 +30,7 @@
 #define DT_Base_Space              10.f
 #define DT_Base_Scale              KSCREEN_WIDTH/375.f
 //基本UI
-#define DT_TabBar_SeleteColor      RGB(254, 203, 47)
+#define DT_TabBar_SeleteColor      RGB(255, 204, 0)
 
 //#define DT_Nav_TitleColor          RGB(112, 112, 112)
 #define DT_Nav_TitleColor          [UIColor blackColor]
@@ -46,7 +46,7 @@
 #define DT_Base_ContentFont        SYSTEM_FONT(13)
 
 #define DT_Base_LineColor          RGB(225, 225, 225)
-#define DT_Base_EdgeColor          RGB(254, 203, 47)
+#define DT_Base_EdgeColor          RGB(255, 204, 0)
 #define DT_Base_GrayEdgeColor      RGB(179, 179, 179)
 //----------------------设备类--------------------------
 //获取屏幕 宽度、高度

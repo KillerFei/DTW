@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel     *titleLabel;
+@property (nonatomic, strong) UIImageView *cornerView;
 @end
 
 @implementation DTTypeCollectionViewCell
@@ -34,16 +35,21 @@
     }
     return _titleLabel;
 }
+- (UIImageView *)cornerView
+{
+    if (!_cornerView) {
+        _cornerView = [[UIImageView alloc] init];
+        _cornerView.image = [[UIImage imageNamed:@"dt_base_corner_bg"] stretchableImageWithLeftCapWidth:12.5 topCapHeight:12.5];
+    }
+    return _cornerView;
+}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        self.contentView.layer.masksToBounds = YES;
-//        self.contentView.layer.cornerRadius  = 5;
-//        self.contentView.layer.borderColor   = DT_Base_GrayEdgeColor.CGColor;
-//        self.contentView.layer.borderWidth   = 0.5;
         [self.contentView addSubview:self.imageView];
         [self.contentView addSubview:self.titleLabel];
+        [self.contentView addSubview:self.cornerView];
     }
     return self;
 }
@@ -59,6 +65,10 @@
         make.left.right.equalTo(self.contentView);
         make.top.equalTo(self.contentView).with.offset(5);
         make.bottom.equalTo(self.titleLabel.mas_top).with.offset(-5);
+    }];
+    [_cornerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.left.bottom.right.equalTo(self.contentView);
     }];
 }
 - (void)configModel:(DTBaseModel *)model

@@ -144,11 +144,9 @@
     NSArray *pics = [self.dataSource objectForKey:@"news"];
     [cell configModel:pics[indexPath.item]];
     if (_seleteIndexPath == indexPath && _bShow) {
-//        cell.contentView.layer.borderColor = DT_Base_EdgeColor.CGColor;
-//        cell.contentView.layer.borderWidth   = 2.f;
+        [cell seleteCornerView];
     } else {
-//        cell.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
-//        cell.contentView.layer.borderWidth   = 0.5f;
+        [cell resetCornerView];
     }
     return cell;
 }
@@ -211,8 +209,7 @@
     [UIView animateWithDuration:0.2 animations:^{
         self.tabBarController.tabBar.top = KSCREEN_HEIGHT-self.tabBarController.tabBar.height;
         self.functionView.top = KSCREEN_HEIGHT-64;
-        cell.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
-        cell.contentView.layer.borderWidth = 0.5f;
+        [cell resetCornerView];
         _bShow = NO;
     }];
 }
@@ -224,10 +221,8 @@
         self.functionView.hidden = NO;
         self.tabBarController.tabBar.top = KSCREEN_HEIGHT;
         self.functionView.top = KSCREEN_HEIGHT-64-150;
-        preCell.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
-        preCell.contentView.layer.borderWidth = 0.5f;
-        lastCell.contentView.layer.borderColor = DT_Base_EdgeColor.CGColor;
-        lastCell.contentView.layer.borderWidth = 2.f;
+        [preCell resetCornerView];
+        [lastCell seleteCornerView];
         self.seleteIndexPath = indexPath;
     } completion:^(BOOL finished) {
         _bShow = YES;
