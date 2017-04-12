@@ -210,11 +210,9 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     [cell configModel:self.dataSource[indexPath.item]];
     cell.nameLab.hidden = YES;
     if (_seleteIndexPath == indexPath) {
-        cell.contentView.layer.borderColor = DT_Base_EdgeColor.CGColor;
-        cell.contentView.layer.borderWidth   = 2.f;
+        [cell seleteCornerView];
     } else {
-        cell.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
-        cell.contentView.layer.borderWidth   = 0.5f;
+        [cell resetCornerView];
     }
     return cell;
 }
@@ -223,13 +221,11 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     if (indexPath != _seleteIndexPath) {
         DTBaseCollectionViewCell *preSeleteCell = (DTBaseCollectionViewCell *)[collectionView cellForItemAtIndexPath:_seleteIndexPath];
-        preSeleteCell.contentView.layer.borderColor = DT_Base_GrayEdgeColor.CGColor;
-        preSeleteCell.contentView.layer.borderWidth   = 0.5f;
+        [preSeleteCell resetCornerView];
         
         _seleteIndexPath = indexPath;
         DTBaseCollectionViewCell *lastSeleteCell = (DTBaseCollectionViewCell *)[collectionView cellForItemAtIndexPath:self.seleteIndexPath];
-        lastSeleteCell.contentView.layer.borderColor = DT_Base_EdgeColor.CGColor;
-        lastSeleteCell.contentView.layer.borderWidth   = 2.f;
+        [lastSeleteCell seleteCornerView];
     }
     DTBaseModel *model = self.dataSource[indexPath.item];
     [self refreshShowImgView:model];
