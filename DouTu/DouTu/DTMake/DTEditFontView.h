@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol DTEditFontViewDelegate  <NSObject>
+@protocol DTEditFontViewDelegate <NSObject>
 
 - (void)useThisFont:(UIFont *)font;
 
 @end
 @interface DTEditFontView : UIView
 
+@property (nonatomic, assign) id<DTEditFontViewDelegate> delegate;
 
 @end

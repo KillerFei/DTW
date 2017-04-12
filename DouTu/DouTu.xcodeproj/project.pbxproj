@@ -44,6 +44,10 @@
 		FB1165671E7B8B98008FDB73 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1165661E7B8B98008FDB73 /* CoreTelephony.framework */; };
 		FB1165691E7B8B9F008FDB73 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB1165681E7B8B9F008FDB73 /* CFNetwork.framework */; };
 		FB289FC01E839F3100CB6B89 /* DTEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB289FBF1E839F3100CB6B89 /* DTEditViewController.m */; };
+		FB28ADFB1E9DC2A4004C6BF4 /* dt_corner_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB28ADFA1E9DC2A4004C6BF4 /* dt_corner_back@2x.png */; };
+		FB28ADFF1E9DC671004C6BF4 /* dt_my_help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB28ADFC1E9DC671004C6BF4 /* dt_my_help@2x.png */; };
+		FB28AE001E9DC671004C6BF4 /* dt_my_declaration@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB28ADFD1E9DC671004C6BF4 /* dt_my_declaration@2x.png */; };
+		FB28AE011E9DC671004C6BF4 /* dt_my_judge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB28ADFE1E9DC671004C6BF4 /* dt_my_judge@2x.png */; };
 		FB367EFD1E7835FD00BAA0E1 /* dt_tabbar_store_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB367EF61E7835FD00BAA0E1 /* dt_tabbar_store_normal@3x.png */; };
 		FB367EFE1E7835FD00BAA0E1 /* dt_tabbar_make_selete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB367EF71E7835FD00BAA0E1 /* dt_tabbar_make_selete@3x.png */; };
 		FB367EFF1E7835FD00BAA0E1 /* dt_tabbar_store_selete@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FB367EF81E7835FD00BAA0E1 /* dt_tabbar_store_selete@3x.png */; };
@@ -187,6 +191,10 @@
 		FB1165681E7B8B9F008FDB73 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FB289FBE1E839F3100CB6B89 /* DTEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTEditViewController.h; sourceTree = "<group>"; };
 		FB289FBF1E839F3100CB6B89 /* DTEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTEditViewController.m; sourceTree = "<group>"; };
+		FB28ADFA1E9DC2A4004C6BF4 /* dt_corner_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_corner_back@2x.png"; sourceTree = "<group>"; };
+		FB28ADFC1E9DC671004C6BF4 /* dt_my_help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_my_help@2x.png"; sourceTree = "<group>"; };
+		FB28ADFD1E9DC671004C6BF4 /* dt_my_declaration@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_my_declaration@2x.png"; sourceTree = "<group>"; };
+		FB28ADFE1E9DC671004C6BF4 /* dt_my_judge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_my_judge@2x.png"; sourceTree = "<group>"; };
 		FB367EF61E7835FD00BAA0E1 /* dt_tabbar_store_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_tabbar_store_normal@3x.png"; sourceTree = "<group>"; };
 		FB367EF71E7835FD00BAA0E1 /* dt_tabbar_make_selete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_tabbar_make_selete@3x.png"; sourceTree = "<group>"; };
 		FB367EF81E7835FD00BAA0E1 /* dt_tabbar_store_selete@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_tabbar_store_selete@3x.png"; sourceTree = "<group>"; };
@@ -436,6 +444,10 @@
 		FB367EF51E7835ED00BAA0E1 /* DTResource */ = {
 			isa = PBXGroup;
 			children = (
+				FB28ADFC1E9DC671004C6BF4 /* dt_my_help@2x.png */,
+				FB28ADFD1E9DC671004C6BF4 /* dt_my_declaration@2x.png */,
+				FB28ADFE1E9DC671004C6BF4 /* dt_my_judge@2x.png */,
+				FB28ADFA1E9DC2A4004C6BF4 /* dt_corner_back@2x.png */,
 				FBDE73E61E95EFB600212AFD /* dt_edit_text_rotate@2x.png */,
 				FBDE73E71E95EFB600212AFD /* dt_edit_text_pull@2x.png */,
 				FBEB2B2D1E94E5DC0079E0B0 /* dt_textColor_bold@2x.png */,
@@ -761,6 +773,7 @@
 			files = (
 				FB367F001E7835FD00BAA0E1 /* dt_tabbar_make_selete@2x.png in Resources */,
 				FB0ED8C91E9270A800752994 /* dt_share_save@2x.png in Resources */,
+				FB28AE011E9DC671004C6BF4 /* dt_my_judge@2x.png in Resources */,
 				FB76FC4E1E779B0B005F6C44 /* LaunchScreen.storyboard in Resources */,
 				FB0ED8C31E926FE000752994 /* dt_share_down@2x.png in Resources */,
 				FBEDBBFC1E7ACE5600F30FEF /* dt_logo_qq_black.png in Resources */,
@@ -768,6 +781,7 @@
 				FB7986071E78D75500904712 /* dt_square@2x.png in Resources */,
 				FB0ED8C41E926FE000752994 /* dt_share_qq@2x.png in Resources */,
 				FB0ED8C71E926FE000752994 /* dt_share_wx@2x.png in Resources */,
+				FB28AE001E9DC671004C6BF4 /* dt_my_declaration@2x.png in Resources */,
 				FBEB2B361E94E5DC0079E0B0 /* dt_textColor_red@2x.png in Resources */,
 				FBE5D1A21E800BD900DB388F /* dt_gif_icon@2x.png in Resources */,
 				FBCD317E1E8A53CE00A94FB2 /* dt_make_seg_btn_right@2x.png in Resources */,
@@ -796,9 +810,11 @@
 				FBE5D1A31E800BD900DB388F /* dt_gif_icon@3x.png in Resources */,
 				FB09DBCC1E7D2D7700716BCF /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				FBE233741E869E0E00D24E49 /* MNMH.ttf in Resources */,
+				FB28ADFB1E9DC2A4004C6BF4 /* dt_corner_back@2x.png in Resources */,
 				FB434BFE1E81112A0016089C /* FZLTXHK.TTF in Resources */,
 				FBDE73E91E95EFB600212AFD /* dt_edit_text_pull@2x.png in Resources */,
 				FBE5D1A01E800BD900DB388F /* dt_new_icon@2x.png in Resources */,
+				FB28ADFF1E9DC671004C6BF4 /* dt_my_help@2x.png in Resources */,
 				FB367EFF1E7835FD00BAA0E1 /* dt_tabbar_store_selete@3x.png in Resources */,
 				FBE5D1A91E80128000DB388F /* dt_icon.png in Resources */,
 				FBE5D1A61E800C6600DB388F /* dt_rank_icon@2x.png in Resources */,

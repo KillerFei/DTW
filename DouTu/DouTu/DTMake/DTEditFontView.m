@@ -30,6 +30,7 @@
     for (int i = 1; i < 9; i++) {
 
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
         [btn setTitle:@"字体效果" forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.frame = CGRectMake(ftLeft, ftTop, ftWidth, ftHeight);
@@ -73,9 +74,19 @@
             default:
                 break;
         }
+    }
+}
+#pragma mark - setDelegate
+- (void)setDelegate:(id<DTEditFontViewDelegate>)delegate
+{
+    _delegate = delegate;
+}
+#pragma mark - btnAction
+- (void)btnAction:(UIButton *)btn
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(useThisFont:)]) {
         
-        
-    
+        [_delegate useThisFont:btn.titleLabel.font];
     }
 }
 @end

@@ -13,7 +13,7 @@
 #import "DTShareView.h"
 #import "DTEditTextColorView.h"
 
-@interface DTEditViewController ()<DTEditBtnViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,MSColorViewDelegate,DTShareViewDelegate,DTEditTextColorViewDelegate>
+@interface DTEditViewController ()<DTEditBtnViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,MSColorViewDelegate,DTShareViewDelegate,DTEditTextColorViewDelegate,DTEditFontViewDelegate>
 
 {
     UIColor *_color;
@@ -98,6 +98,7 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
         _textView = [[UITextView alloc] initWithFrame:CGRectZero];
         _textView.backgroundColor     = [UIColor clearColor];
         _textView.font                = DT_Base_TitleFont;
+        _textView.textColor           = [UIColor blackColor];
         _textView.layer.cornerRadius  = 2;
         _textView.layer.borderWidth   = 1.f;
         _textView.layer.borderColor   = DT_Base_EdgeColor.CGColor;
@@ -180,10 +181,17 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
         CGFloat durtion = [UIImage sd_animatedGifDurationWithData:[[SDImageCache sharedImageCache] diskImageDataBySearchingAllPathsForKey:_model.gifPath]]/gifImg.count;
         NSMutableArray *imgs = [[NSMutableArray alloc] init];
         for (UIImage *image in gifImg) {
-//            if (!kStringIsEmpty(_textView.text)) {
-//                UIImage *img = [image addText:_wordView.text textRect:self.wordView.frame withAttributes:@{NSFontAttributeName:_wordView.font, NSForegroundColorAttributeName:_wordView.textColor, NSBackgroundColorAttributeName:_wordView.backgroundColor}];
-//                [imgs addObject:img];
-//            }
+            if (!kStringIsEmpty(_textView.text)) {
+                
+                NSDictionary *attr = nil;
+                if (_textView.backgroundColor != [UIColor clearColor]) {
+                    attr = @{NSFontAttributeName:_textView.font, NSForegroundColorAttributeName:_textView.textColor, NSBackgroundColorAttributeName:_textView.backgroundColor,NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@-5};
+                } else {
+                    attr = @{NSFontAttributeName:_textView.font, NSForegroundColorAttributeName:_textView.textColor,NSStrokeColorAttributeName:[UIColor whiteColor],NSStrokeWidthAttributeName:@1};
+                }
+                UIImage *img = [image addText:_textView.text textRect:_textView.frame withAttributes:attr];
+                [imgs addObject:img];
+            }
         }
         _gifPath = [UIImage pathWithImages:imgs gifPath:_model.gifPath durtion:durtion];  
         [self.shareView configPic:_gifPath];
@@ -195,7 +203,7 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     
     _color           = DT_Base_EdgeColor;
     _seleteIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    CGFloat imgWidth = 210;
+    CGFloat imgWidth = 210 * DT_Base_Scale;
     // 添加展示图片
     self.showBackView.frame = CGRectMake(15, 15, imgWidth, imgWidth);
     self.showView.frame     = CGRectMake(0, 0, imgWidth, imgWidth);
@@ -265,6 +273,7 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
         [self.editBgColorView addSubview:bgBtn];
     }
     self.fontView = [[DTEditFontView alloc] initWithFrame:CGRectMake(KSCREEN_WIDTH*2, 0, KSCREEN_WIDTH, scrHeight)];
+    self.fontView.delegate = self;
     
     [self.editScrollView addSubview:self.editTab];
     [self.editBgColorView addSubview:self.bgColorSectionView];
@@ -474,5 +483,10 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
         [self.shareView removeFromSuperview];
     }
     [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - DTEditFontViewDelegate
+- (void)useThisFont:(UIFont *)font
+{
+    self.textView.font = font;
 }
 @end

@@ -12,7 +12,6 @@
 
 - (void)sendPicToWx;
 - (void)sendPicToQQ;
-- (void)collectPic;
 - (void)savePic;
 - (void)editPic;
 @end

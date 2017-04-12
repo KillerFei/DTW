@@ -46,6 +46,11 @@ static NSString *const kDTMyCellIdentifier = @"myCellIdentifier";
     [self initItemMenu];
     [self.view addSubview:self.myTableView];
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.myTableView reloadData];
+}
 
 - (void)initItemMenu
 {
@@ -91,24 +96,28 @@ static NSString *const kDTMyCellIdentifier = @"myCellIdentifier";
     DTMyTableViewCell *myCell = (DTMyTableViewCell *)cell;
     myCell.titleLabel.textColor = DT_Base_TitleColor;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    myCell.cacheLabel.hidden = YES;
     NSArray *items = self.dataSource[indexPath.section];
     NSInteger item = [items[indexPath.row] integerValue];
     switch (item) {
         case kDTMyType_Help:
-            myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
+            myCell.iconView.image = [UIImage imageNamed:@"dt_my_help"];
             myCell.titleLabel.text = @"使用帮助";
             break;
         case kDTMyType_Clear:
+            myCell.accessoryType = UITableViewCellAccessoryNone;
             myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
             myCell.titleLabel.text = @"清除缓存";
             myCell.titleLabel.textColor = RGB(255, 47, 57);
+            myCell.cacheLabel.hidden = NO;
+            myCell.cacheLabel.text = [NSString stringWithFormat:@"%.02fM",[[SDImageCache sharedImageCache] getSize]/1024.f/1024];
             break;
         case kDTMyType_Judge:
-            myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
-            myCell.titleLabel.text = @"跪等好评";
+            myCell.iconView.image = [UIImage imageNamed:@"dt_my_judge"];
+            myCell.titleLabel.text = @"给我们支持";
             break;
         case kDTMyType_Declaration:
-            myCell.iconView.image = [UIImage imageNamed:@"dt_tabbar_make_selete"];
+            myCell.iconView.image = [UIImage imageNamed:@"dt_my_declaration"];
             myCell.titleLabel.text = @"免责声明";
             break;
         default:
@@ -124,14 +133,10 @@ static NSString *const kDTMyCellIdentifier = @"myCellIdentifier";
         case kDTMyType_Help:
             break;
         case kDTMyType_Clear:
+            [self clearCachesAtIndexPath:indexPath];
             break;
-        case kDTMyType_Judge: {
-            NSURL *commentUrl = [NSURL URLWithString:kAppUrl];
-            [[UIApplication sharedApplication] openURL:commentUrl];
-            NSString *version = [DTOnlineManager currentVerson];
-            [[NSUserDefaults standardUserDefaults] setObject:version forKey:KDTVersionCommentKey];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
+        case kDTMyType_Judge:
+            [self doJudge];
             break;
         case kDTMyType_Declaration:
             [self showDeclaration];
@@ -148,4 +153,22 @@ static NSString *const kDTMyCellIdentifier = @"myCellIdentifier";
     disVC.navTitle = @"免责声明";
     [self.navigationController pushViewController:disVC animated:YES];
 }
+// 清楚缓存
+- (void)clearCachesAtIndexPath:(NSIndexPath *)indexpath
+{
+    [[SDImageCache sharedImageCache] clearDisk];
+    DTMyTableViewCell *myCell = [self.myTableView cellForRowAtIndexPath:indexpath];
+    myCell.cacheLabel.text = @"0.00M";
+    [DTHudManager showMessage:@"清除成功" InView:self.view];
+}
+// 给好评
+- (void)doJudge
+{
+    NSURL *commentUrl = [NSURL URLWithString:kAppUrl];
+    [[UIApplication sharedApplication] openURL:commentUrl];
+    NSString *version = [DTOnlineManager currentVerson];
+    [[NSUserDefaults standardUserDefaults] setObject:version forKey:KDTVersionCommentKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 @end

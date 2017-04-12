@@ -21,14 +21,16 @@
 }
 - (void)addSubviews
 {
-    CGFloat btnHorSpace = 45;
-    CGFloat btnVerSpace = 15;
-    CGFloat btnHeight   = (self.height-6*btnVerSpace-30)/5;
+    CGFloat btnHeight   = 18*DT_Base_Scale;
+    CGFloat btnVerSpace = (self.height-5*btnHeight-30)/6;
+    CGFloat btnWidth    = 60*DT_Base_Scale;
+    CGFloat btnHorSpace = (self.width-btnWidth)/2;
+    
     for (int i = 0; i < 6; i++) {
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag   = 10000+i;
-        button.frame = CGRectMake(btnHorSpace, btnVerSpace*(i+1)+btnHeight*i, self.width-btnHorSpace*2, btnHeight);
+        button.frame = CGRectMake(btnHorSpace, btnVerSpace*(i+1)+btnHeight*i, btnWidth, btnHeight);
         [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         if (i==5) {
             button.height = 30;

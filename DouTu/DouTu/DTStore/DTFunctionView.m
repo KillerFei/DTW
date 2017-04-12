@@ -13,7 +13,6 @@
 @property (nonatomic, strong) UIImageView *showView;
 @property (nonatomic, strong) UIButton    *qqBtn;
 @property (nonatomic, strong) UIButton    *wxBtn;
-@property (nonatomic, strong) UIButton    *collectBtn;
 @property (nonatomic, strong) UIButton    *saveBtn;
 @property (nonatomic, strong) UIButton    *editBtn;
 @end
@@ -75,22 +74,22 @@
     }
     return _wxBtn;
 }
-- (UIButton *)collectBtn
+- (UIButton *)editBtn
 {
-    if (!_collectBtn) {
-        _collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
-        [_collectBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_collectBtn setImage:[UIImage imageNamed:@"dt_down_em"] forState:UIControlStateNormal];
-        _collectBtn.titleLabel.font = DT_Base_ContentFont;
-        _collectBtn.backgroundColor = DT_Base_EdgeColor;
-        _collectBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -3, 0, 3);
-        _collectBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, -3);
-        _collectBtn.layer.masksToBounds = YES;
-        _collectBtn.layer.cornerRadius  = 17.5;
-        [_collectBtn addTarget:self action:@selector(collectBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    if (!_editBtn) {
+        _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_editBtn setTitle:@"改图" forState:UIControlStateNormal];
+        [_editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_editBtn setImage:[UIImage imageNamed:@"dt_favor_normal"] forState:UIControlStateNormal];
+        _editBtn.backgroundColor = DT_Base_EdgeColor;
+        _editBtn.titleLabel.font = DT_Base_ContentFont;
+        _editBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -3, 0, 3);
+        _editBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 3, 0, -3);
+        _editBtn.layer.masksToBounds = YES;
+        _editBtn.layer.cornerRadius  = 17.5;
+        [_editBtn addTarget:self action:@selector(editBtnAction) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _collectBtn;
+    return _editBtn;
 }
 - (UIButton *)saveBtn
 {
@@ -98,7 +97,7 @@
         _saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_saveBtn setTitle:@"下载" forState:UIControlStateNormal];
-        [_saveBtn setImage:[UIImage imageNamed:@"dt_favor_normal"] forState:UIControlStateNormal];
+        [_saveBtn setImage:[UIImage imageNamed:@"dt_down_em"] forState:UIControlStateNormal];
         _saveBtn.backgroundColor = DT_Base_EdgeColor;
         _saveBtn.titleLabel.font = DT_Base_ContentFont;
         _saveBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -3, 0, 3);
@@ -109,20 +108,6 @@
     }
     return _saveBtn;
 }
-- (UIButton *)editBtn
-{
-    if (!_editBtn) {
-        _editBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_editBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_editBtn setTitle:@"改图" forState:UIControlStateNormal];
-        [_editBtn addTarget:self action:@selector(editBtnAction) forControlEvents:UIControlEventTouchUpInside];
-        _editBtn.backgroundColor = DT_Base_EdgeColor;
-        _editBtn.titleLabel.font = DT_Base_ContentFont;
-        _editBtn.layer.masksToBounds = YES;
-        _editBtn.layer.cornerRadius  = 5;
-    }
-    return _editBtn;
-}
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -132,9 +117,8 @@
         [self.contentView addSubview:self.showView];
         [self.contentView addSubview:self.qqBtn];
         [self.contentView addSubview:self.wxBtn];
-        [self.contentView addSubview:self.collectBtn];
-        [self.contentView addSubview:self.saveBtn];
         [self.contentView addSubview:self.editBtn];
+        [self.contentView addSubview:self.saveBtn];
     }
     return self;
 }
@@ -148,43 +132,37 @@
         make.left.bottom.right.equalTo(self);
     }];
     
-        [_showView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_showView mas_makeConstraints:^(MASConstraintMaker *make) {
     
-            make.left.top.equalTo(_contentView).with.offset(15);
-            make.size.mas_equalTo(CGSizeMake(120, 120));
-        }];
+        make.left.top.equalTo(_contentView).with.offset(15);
+        make.size.mas_equalTo(CGSizeMake(120, 120));
+    }];
     
-        CGFloat btnWidth = (KSCREEN_WIDTH-60-120)/2;
-        [_collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    CGFloat btnWidth = (KSCREEN_WIDTH-60-120)/2;
+    [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
     
-            make.left.equalTo(self.showView.mas_right).with.offset(15);
-            make.bottom.equalTo(self.showView);
-            make.size.mas_equalTo(CGSizeMake(btnWidth, 40));
-        }];
-        [_saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.showView.mas_right).with.offset(15);
+        make.bottom.equalTo(self.showView);
+        make.size.mas_equalTo(CGSizeMake(btnWidth, 35));
+    }];
+    [_saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
     
-            make.left.equalTo(self.collectBtn.mas_right).with.offset(15);
-            make.bottom.equalTo(self.collectBtn);
-            make.size.mas_equalTo(CGSizeMake(btnWidth, 40));
-        }];
-        [_qqBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.editBtn.mas_right).with.offset(15);
+        make.bottom.equalTo(self.editBtn);
+        make.size.mas_equalTo(CGSizeMake(btnWidth, 35));
+    }];
+    [_qqBtn mas_makeConstraints:^(MASConstraintMaker *make) {
     
-            make.left.equalTo(self.collectBtn.mas_left);
-            make.bottom.equalTo(self.collectBtn.mas_top).with.offset(-15);
-            make.size.mas_equalTo(CGSizeMake(btnWidth, 40));
-        }];
-        [_wxBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.editBtn.mas_left);
+        make.bottom.equalTo(self.editBtn.mas_top).with.offset(-15);
+        make.size.mas_equalTo(CGSizeMake(btnWidth, 35));
+    }];
+    [_wxBtn mas_makeConstraints:^(MASConstraintMaker *make) {
     
-            make.left.equalTo(self.qqBtn.mas_right).with.offset(15);
-            make.bottom.equalTo(self.collectBtn.mas_top).with.offset(-15);
-            make.size.mas_equalTo(CGSizeMake(btnWidth, 40));
-        }];
-    
-        [_editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.top.right.equalTo(_showView);
-            make.size.mas_equalTo(CGSizeMake(40, 20));
-        } ];
+        make.left.equalTo(self.qqBtn.mas_right).with.offset(15);
+        make.bottom.equalTo(self.editBtn.mas_top).with.offset(-15);
+        make.size.mas_equalTo(CGSizeMake(btnWidth, 35));
+    }];
 }
 - (void)configModel:(DTBaseModel *)model
 {
@@ -206,12 +184,6 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(sendPicToWx)]) {
         [_delegate sendPicToWx];
-    }
-}
-- (void)collectBtnAction
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(collectPic)]) {
-        [_delegate collectPic];
     }
 }
 - (void)saveBtnAction

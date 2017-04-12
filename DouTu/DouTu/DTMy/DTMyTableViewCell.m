@@ -27,6 +27,17 @@
     }
     return _titleLabel;
 }
+- (UILabel *)cacheLabel
+{
+    if (!_cacheLabel) {
+        _cacheLabel = [[UILabel alloc] init];
+        _cacheLabel.text = @"0.00M";
+        _cacheLabel.font = DT_Base_ContentFont;
+        _cacheLabel.textColor = DT_Base_ContentColor;
+        _cacheLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _cacheLabel;
+}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -34,6 +45,7 @@
         
         [self.contentView addSubview:self.iconView];
         [self.contentView addSubview:self.titleLabel];
+        [self.contentView addSubview:self.cacheLabel];
     }
     return self;
 }
@@ -44,7 +56,7 @@
         
         make.left.equalTo(self.contentView).with.offset(10);
         make.centerY.equalTo(self.contentView);
-        make.size.mas_equalTo(CGSizeMake(14, 14));
+        make.size.mas_equalTo(CGSizeMake(19, 19));
     }];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -53,11 +65,19 @@
         make.top.bottom.equalTo(self.contentView);
         make.right.equalTo(self.contentView).with.offset(-32);
     }];
+    
+    [_cacheLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.right.equalTo(self.contentView).with.offset(-10);
+        make.top.bottom.equalTo(self.contentView);
+        make.width.mas_equalTo(@100);
+    }];
 }
 - (void)prepareForReuse
 {
     [super prepareForReuse];
     _iconView.image   = nil;
     _titleLabel.text  = nil;
+    _cacheLabel.text  = nil;
 }
 @end
