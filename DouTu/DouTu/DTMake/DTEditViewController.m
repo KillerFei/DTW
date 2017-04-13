@@ -9,11 +9,11 @@
 #import "DTEditViewController.h"
 #import "DTEditBtnView.h"
 #import "DTEditFontView.h"
-#import "MSColorSelectionView.h"
 #import "DTShareView.h"
 #import "DTEditTextColorView.h"
+#import "WSColorImageView.h"
 
-@interface DTEditViewController ()<DTEditBtnViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,MSColorViewDelegate,DTShareViewDelegate,DTEditTextColorViewDelegate,DTEditFontViewDelegate>
+@interface DTEditViewController ()<DTEditBtnViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,DTShareViewDelegate,DTEditTextColorViewDelegate,DTEditFontViewDelegate>
 
 {
     UIColor *_color;
@@ -23,7 +23,7 @@
 @property (nonatomic, strong) DTEditBtnView          *editView;
 @property (nonatomic, strong) UIScrollView           *editScrollView;
 @property (nonatomic, strong) UITableView            *editTab;
-@property (nonatomic, strong) MSColorSelectionView   *bgColorSectionView;
+@property (nonatomic, strong) WSColorImageView       *bgColorView;
 @property (nonatomic, strong) UIView                 *editBgColorView;
 @property (nonatomic, strong) UIView                 *editFtView;
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
@@ -117,16 +117,6 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
         _editBgColorView = [[UIView alloc] init];
     }
     return _editBgColorView;
-}
-- (MSColorSelectionView *)bgColorSectionView
-{
-    if (!_bgColorSectionView) {
-        _bgColorSectionView = [[MSColorSelectionView alloc] init];
-        _bgColorSectionView.color = self.view.backgroundColor;
-        _bgColorSectionView.delegate = self;
-        [_bgColorSectionView setSelectedIndex:1 animated:NO];
-    }
-    return _bgColorSectionView;
 }
 - (DTShareView *)shareView
 {
@@ -234,8 +224,12 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     self.editTab.frame             = CGRectMake(0, 0, KSCREEN_WIDTH, scrHeight);
     // 文字背景
     self.editBgColorView.frame     = CGRectMake(KSCREEN_WIDTH, 0, KSCREEN_WIDTH, scrHeight);
-    self.bgColorSectionView.frame  = CGRectMake(0, 0, scrHeight-100, scrHeight-100);
-    self.bgColorSectionView.center = CGPointMake((KSCREEN_WIDTH-15-30)/2,scrHeight/2-50);
+    self.bgColorView = [[WSColorImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    self.bgColorView.center = CGPointMake(KSCREEN_WIDTH/2-20, scrHeight/2+10);
+    WS(weakSelf);
+    self.bgColorView.currentColorBlock = ^(UIColor *color) {
+        weakSelf.textView.backgroundColor = color;
+    };
     CGFloat btnTop    = 20;
     CGFloat btnPace   = 10;
     CGFloat btnHeight = 15;
@@ -276,7 +270,7 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     self.fontView.delegate = self;
     
     [self.editScrollView addSubview:self.editTab];
-    [self.editBgColorView addSubview:self.bgColorSectionView];
+    [self.editBgColorView addSubview:self.bgColorView];
     [self.editScrollView addSubview:self.editBgColorView];
     [self.editScrollView addSubview:self.fontView];
     [self.view addSubview:_editScrollView];
@@ -395,10 +389,6 @@ static NSString *const kDTTagCollectionViewCell = @"kDTTagCollectionViewCell";
     self.textView.height = textSize.height;
     self.textView.centerX = self.showView.width/2;
     self.textView.bottom  = self.showView.height-10;
-}
-- (void)colorView:(id<MSColorView>)colorView didChangeColor:(UIColor *)color
-{
-    self.textView.backgroundColor = color;
 }
 #pragma mark - BackgroundColor BtnAction 背景颜色
 - (void)bgBtnAction:(UIButton *)sender

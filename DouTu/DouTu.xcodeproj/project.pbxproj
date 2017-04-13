@@ -8,16 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AB30980BEB949E5E9984E6AC /* libPods-DouTu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85ED1F1AA3BCD968A8C60A77 /* libPods-DouTu.a */; };
-		FB07BA911E8634B0009478ED /* MSColorComponentView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA7C1E8634B0009478ED /* MSColorComponentView.m */; };
-		FB07BA921E8634B0009478ED /* MSColorSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA7F1E8634B0009478ED /* MSColorSelectionView.m */; };
-		FB07BA931E8634B0009478ED /* MSColorSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA811E8634B0009478ED /* MSColorSelectionViewController.m */; };
-		FB07BA941E8634B0009478ED /* MSColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA831E8634B0009478ED /* MSColorUtils.m */; };
-		FB07BA951E8634B0009478ED /* MSColorWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA861E8634B0009478ED /* MSColorWheelView.m */; };
-		FB07BA961E8634B0009478ED /* MSHSBView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA881E8634B0009478ED /* MSHSBView.m */; };
-		FB07BA971E8634B0009478ED /* MSRGBView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA8A1E8634B0009478ED /* MSRGBView.m */; };
-		FB07BA981E8634B0009478ED /* MSSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA8C1E8634B0009478ED /* MSSliderView.m */; };
-		FB07BA991E8634B0009478ED /* MSThumbView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA8E1E8634B0009478ED /* MSThumbView.m */; };
-		FB07BA9A1E8634B0009478ED /* UIControl+HitTestEdgeInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07BA901E8634B0009478ED /* UIControl+HitTestEdgeInsets.m */; };
 		FB09DBB41E7D23FF00716BCF /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FB09DBB31E7D23FF00716BCF /* libiconv.tbd */; };
 		FB09DBB61E7D240F00716BCF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB09DBB51E7D240F00716BCF /* CoreGraphics.framework */; };
 		FB09DBB81E7D241A00716BCF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FB09DBB71E7D241A00716BCF /* libsqlite3.tbd */; };
@@ -131,34 +121,14 @@
 		FBEDBBFD1E7ACE5600F30FEF /* dt_logo_qq_black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBEDBBF91E7ACE5600F30FEF /* dt_logo_qq_black@2x.png */; };
 		FBEDBBFF1E7AD9F400F30FEF /* dt_loadingImg@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FBEDBBFE1E7AD9F400F30FEF /* dt_loadingImg@1x.png */; };
 		FBEFF4AB1E7E57B900E95DCF /* DTMakeHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBEFF4AA1E7E57B900E95DCF /* DTMakeHeaderCell.m */; };
+		FBF873431E9F1DE700BC669A /* palette.png in Resources */ = {isa = PBXBuildFile; fileRef = FBF873401E9F1DE700BC669A /* palette.png */; };
+		FBF873441E9F1DE700BC669A /* WSColorImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FBF873421E9F1DE700BC669A /* WSColorImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2959DD06CF1E47C214488810 /* Pods-DouTu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DouTu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DouTu/Pods-DouTu.debug.xcconfig"; sourceTree = "<group>"; };
 		85ED1F1AA3BCD968A8C60A77 /* libPods-DouTu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DouTu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCE54912B851FC906ED09294 /* Pods-DouTu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DouTu.release.xcconfig"; path = "Pods/Target Support Files/Pods-DouTu/Pods-DouTu.release.xcconfig"; sourceTree = "<group>"; };
-		FB07BA7B1E8634B0009478ED /* MSColorComponentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorComponentView.h; sourceTree = "<group>"; };
-		FB07BA7C1E8634B0009478ED /* MSColorComponentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSColorComponentView.m; sourceTree = "<group>"; };
-		FB07BA7D1E8634B0009478ED /* MSColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorPicker.h; sourceTree = "<group>"; };
-		FB07BA7E1E8634B0009478ED /* MSColorSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorSelectionView.h; sourceTree = "<group>"; };
-		FB07BA7F1E8634B0009478ED /* MSColorSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSColorSelectionView.m; sourceTree = "<group>"; };
-		FB07BA801E8634B0009478ED /* MSColorSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorSelectionViewController.h; sourceTree = "<group>"; };
-		FB07BA811E8634B0009478ED /* MSColorSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSColorSelectionViewController.m; sourceTree = "<group>"; };
-		FB07BA821E8634B0009478ED /* MSColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorUtils.h; sourceTree = "<group>"; };
-		FB07BA831E8634B0009478ED /* MSColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSColorUtils.m; sourceTree = "<group>"; };
-		FB07BA841E8634B0009478ED /* MSColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorView.h; sourceTree = "<group>"; };
-		FB07BA851E8634B0009478ED /* MSColorWheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSColorWheelView.h; sourceTree = "<group>"; };
-		FB07BA861E8634B0009478ED /* MSColorWheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSColorWheelView.m; sourceTree = "<group>"; };
-		FB07BA871E8634B0009478ED /* MSHSBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSHSBView.h; sourceTree = "<group>"; };
-		FB07BA881E8634B0009478ED /* MSHSBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSHSBView.m; sourceTree = "<group>"; };
-		FB07BA891E8634B0009478ED /* MSRGBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSRGBView.h; sourceTree = "<group>"; };
-		FB07BA8A1E8634B0009478ED /* MSRGBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSRGBView.m; sourceTree = "<group>"; };
-		FB07BA8B1E8634B0009478ED /* MSSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSliderView.h; sourceTree = "<group>"; };
-		FB07BA8C1E8634B0009478ED /* MSSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSliderView.m; sourceTree = "<group>"; };
-		FB07BA8D1E8634B0009478ED /* MSThumbView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSThumbView.h; sourceTree = "<group>"; };
-		FB07BA8E1E8634B0009478ED /* MSThumbView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSThumbView.m; sourceTree = "<group>"; };
-		FB07BA8F1E8634B0009478ED /* UIControl+HitTestEdgeInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIControl+HitTestEdgeInsets.h"; sourceTree = "<group>"; };
-		FB07BA901E8634B0009478ED /* UIControl+HitTestEdgeInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIControl+HitTestEdgeInsets.m"; sourceTree = "<group>"; };
 		FB09DBB31E7D23FF00716BCF /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		FB09DBB51E7D240F00716BCF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		FB09DBB71E7D241A00716BCF /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -319,6 +289,9 @@
 		FBEDBBFE1E7AD9F400F30FEF /* dt_loadingImg@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dt_loadingImg@1x.png"; sourceTree = "<group>"; };
 		FBEFF4A91E7E57B900E95DCF /* DTMakeHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTMakeHeaderCell.h; sourceTree = "<group>"; };
 		FBEFF4AA1E7E57B900E95DCF /* DTMakeHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTMakeHeaderCell.m; sourceTree = "<group>"; };
+		FBF873401E9F1DE700BC669A /* palette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = palette.png; sourceTree = "<group>"; };
+		FBF873411E9F1DE700BC669A /* WSColorImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSColorImageView.h; sourceTree = "<group>"; };
+		FBF873421E9F1DE700BC669A /* WSColorImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSColorImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,35 +346,6 @@
 				85ED1F1AA3BCD968A8C60A77 /* libPods-DouTu.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FB07BA7A1E8634B0009478ED /* MSColorPicker */ = {
-			isa = PBXGroup;
-			children = (
-				FB07BA7B1E8634B0009478ED /* MSColorComponentView.h */,
-				FB07BA7C1E8634B0009478ED /* MSColorComponentView.m */,
-				FB07BA7D1E8634B0009478ED /* MSColorPicker.h */,
-				FB07BA7E1E8634B0009478ED /* MSColorSelectionView.h */,
-				FB07BA7F1E8634B0009478ED /* MSColorSelectionView.m */,
-				FB07BA801E8634B0009478ED /* MSColorSelectionViewController.h */,
-				FB07BA811E8634B0009478ED /* MSColorSelectionViewController.m */,
-				FB07BA821E8634B0009478ED /* MSColorUtils.h */,
-				FB07BA831E8634B0009478ED /* MSColorUtils.m */,
-				FB07BA841E8634B0009478ED /* MSColorView.h */,
-				FB07BA851E8634B0009478ED /* MSColorWheelView.h */,
-				FB07BA861E8634B0009478ED /* MSColorWheelView.m */,
-				FB07BA871E8634B0009478ED /* MSHSBView.h */,
-				FB07BA881E8634B0009478ED /* MSHSBView.m */,
-				FB07BA891E8634B0009478ED /* MSRGBView.h */,
-				FB07BA8A1E8634B0009478ED /* MSRGBView.m */,
-				FB07BA8B1E8634B0009478ED /* MSSliderView.h */,
-				FB07BA8C1E8634B0009478ED /* MSSliderView.m */,
-				FB07BA8D1E8634B0009478ED /* MSThumbView.h */,
-				FB07BA8E1E8634B0009478ED /* MSThumbView.m */,
-				FB07BA8F1E8634B0009478ED /* UIControl+HitTestEdgeInsets.h */,
-				FB07BA901E8634B0009478ED /* UIControl+HitTestEdgeInsets.m */,
-			);
-			path = MSColorPicker;
 			sourceTree = "<group>";
 		};
 		FB09DBC11E7D2AE200716BCF /* qq */ = {
@@ -514,7 +458,6 @@
 		FB434BE11E80DBF80016089C /* DTThird */ = {
 			isa = PBXGroup;
 			children = (
-				FB07BA7A1E8634B0009478ED /* MSColorPicker */,
 			);
 			path = DTThird;
 			sourceTree = "<group>";
@@ -604,6 +547,7 @@
 		FB76FC5A1E779FF7005F6C44 /* DTPublic */ = {
 			isa = PBXGroup;
 			children = (
+				FBF8733F1E9F1DC200BC669A /* DTColorView */,
 				FB434BE11E80DBF80016089C /* DTThird */,
 				FB0B98881E7A93FA0059762F /* DTTool */,
 				FB76FC7D1E77D675005F6C44 /* DTNetManger */,
@@ -721,6 +665,16 @@
 			path = DTCate;
 			sourceTree = "<group>";
 		};
+		FBF8733F1E9F1DC200BC669A /* DTColorView */ = {
+			isa = PBXGroup;
+			children = (
+				FBF873401E9F1DE700BC669A /* palette.png */,
+				FBF873411E9F1DE700BC669A /* WSColorImageView.h */,
+				FBF873421E9F1DE700BC669A /* WSColorImageView.m */,
+			);
+			path = DTColorView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -790,6 +744,7 @@
 				FB76FC4E1E779B0B005F6C44 /* LaunchScreen.storyboard in Resources */,
 				FB0ED8C31E926FE000752994 /* dt_share_down@2x.png in Resources */,
 				FBEDBBFC1E7ACE5600F30FEF /* dt_logo_qq_black.png in Resources */,
+				FBF873431E9F1DE700BC669A /* palette.png in Resources */,
 				FBE5D1A71E800C6600DB388F /* dt_rank_icon@3x.png in Resources */,
 				FB7986071E78D75500904712 /* dt_square@2x.png in Resources */,
 				FB28AE091E9E10DA004C6BF4 /* dt_base_corner_bg_ye@3x.png in Resources */,
@@ -902,22 +857,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FBCD31791E8A46EB00A94FB2 /* DTMakeHotViewController.m in Sources */,
-				FB07BA931E8634B0009478ED /* MSColorSelectionViewController.m in Sources */,
 				FBE8E42A1E895C4700587BE1 /* DTTypeModel.m in Sources */,
 				FB76FC431E779B0B005F6C44 /* AppDelegate.m in Sources */,
-				FB07BA941E8634B0009478ED /* MSColorUtils.m in Sources */,
 				FBBF7BA21E8B5142001BC784 /* DTCustomSegmentedControl.m in Sources */,
-				FB07BA991E8634B0009478ED /* MSThumbView.m in Sources */,
 				FB434BE01E80C9870016089C /* DTEditBtnView.m in Sources */,
 				FBEAA6B81E781340000C703D /* DTCollectionReusableView.m in Sources */,
 				FB0B988B1E7A95130059762F /* DTHudManager.m in Sources */,
-				FB07BA921E8634B0009478ED /* MSColorSelectionView.m in Sources */,
 				FBE227A81E7CED6F0098BB5A /* DTMyHeaderView.m in Sources */,
 				FBCD31701E8A294F00A94FB2 /* DTTypeCollectionViewCell.m in Sources */,
 				FB289FC01E839F3100CB6B89 /* DTEditViewController.m in Sources */,
 				FBE227A51E7CE3650098BB5A /* DTOnlineManager.m in Sources */,
-				FB07BA971E8634B0009478ED /* MSRGBView.m in Sources */,
-				FB07BA9A1E8634B0009478ED /* UIControl+HitTestEdgeInsets.m in Sources */,
 				FB76FC8A1E77DD32005F6C44 /* DTBaseModel.m in Sources */,
 				FB76FC701E77C64E005F6C44 /* DTBaseCollectionViewController.m in Sources */,
 				FB0B986F1E7A43B70059762F /* DTFunctionView.m in Sources */,
@@ -925,20 +874,18 @@
 				FBEAA6B51E780B54000C703D /* DTBaseTitleCollectionViewCell.m in Sources */,
 				FB76FC8D1E77E3CF005F6C44 /* DTBaseCollectionViewCell.m in Sources */,
 				FB0B98871E7A931B0059762F /* NSURL+DT_Ex.m in Sources */,
-				FB07BA951E8634B0009478ED /* MSColorWheelView.m in Sources */,
 				FB76FC791E77D2B8005F6C44 /* DTMakeViewController.m in Sources */,
 				FB11655B1E7B8181008FDB73 /* DTSendPicManager.m in Sources */,
 				FBE33CF91E94BD99007A033A /* DTEditTextColorView.m in Sources */,
 				FB8C1B1D1E8525F900CE3A1B /* UIImage+DT_Text.m in Sources */,
 				FB76FC6A1E77A1E9005F6C44 /* DTBaseNavigationController.m in Sources */,
 				FB434C011E81129C0016089C /* DTEditFontView.m in Sources */,
-				FB07BA981E8634B0009478ED /* MSSliderView.m in Sources */,
-				FB07BA961E8634B0009478ED /* MSHSBView.m in Sources */,
 				FB76FC761E77D26D005F6C44 /* DTMyViewController.m in Sources */,
 				FBD72F201E7D904A00FF45B7 /* DTFouncManager.m in Sources */,
 				FB76FC7C1E77D2DD005F6C44 /* DTStoreViewController.m in Sources */,
 				FBED59A21E9094F3006200EF /* DTShareView.m in Sources */,
 				FB09DBD21E7D4BA800716BCF /* DTDBManager.m in Sources */,
+				FBF873441E9F1DE700BC669A /* WSColorImageView.m in Sources */,
 				FB79861A1E78F41E00904712 /* DTTagViewController.m in Sources */,
 				FBE227AB1E7CF6170098BB5A /* DTDisclaimerVC.m in Sources */,
 				FB76FC401E779B0B005F6C44 /* main.m in Sources */,
@@ -949,7 +896,6 @@
 				FB0B98841E7A90920059762F /* UIView+DT_Ex.m in Sources */,
 				FBD991961E7C467D00B00999 /* DTMyTableViewCell.m in Sources */,
 				FBE8E4301E8961A500587BE1 /* DTAllTypeViewController.m in Sources */,
-				FB07BA911E8634B0009478ED /* MSColorComponentView.m in Sources */,
 				FB76FC5E1E77A0C2005F6C44 /* DTBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
