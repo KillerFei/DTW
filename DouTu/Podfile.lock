@@ -17,6 +17,7 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - HcdGuideView (0.0.5)
   - HYBNetworking (3.3.1):
     - AFNetworking (~> 3.1.0)
   - Masonry (1.0.2)
@@ -30,6 +31,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - FMDB
+  - HcdGuideView
   - HYBNetworking (~> 3.3.0)
   - Masonry
   - MBProgressHUD (~> 1.0.0)
@@ -40,6 +42,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  HcdGuideView: 3ffaa22aebe7409bbd3fd6bcfcbe912d391a237a
   HYBNetworking: 5b350e2eacfbf6db7d3f4253274b2f2bb68e881c
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: a03394147c70aa8707316629759ce61e30fc6f88
+PODFILE CHECKSUM: 603333dbedf1c92d0c82b55bfada24682b4aa374
 
 COCOAPODS: 1.0.1

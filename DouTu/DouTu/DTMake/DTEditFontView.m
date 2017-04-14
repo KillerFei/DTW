@@ -28,16 +28,9 @@
     CGFloat verSpace = KSCREEN_WIDTH-ftLeft*2-ftWidth*2;
     CGFloat horSpace = (self.height-ftTop*2-ftHeight*4)/3;
     for (int i = 1; i < 9; i++) {
-
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setTitle:@"字体效果" forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        UIButton *btn = [UIButton dtNormalButtonWithTitle:@"字体效果" titleFont:nil titleColor:[UIColor blackColor] image:nil bgColor:nil bgImg:[UIImage imageNamed:@"dt_base_corner_bg"] target:self action:@selector(btnAction:)];
         btn.frame = CGRectMake(ftLeft, ftTop, ftWidth, ftHeight);
-        btn.layer.masksToBounds = YES;
-        btn.layer.cornerRadius = 2;
-        btn.layer.borderColor = DT_Base_LineColor.CGColor;
-        btn.layer.borderWidth = 1;
+        
         if (i%2) {
             ftLeft = ftLeft+ftWidth+verSpace;
         } else {

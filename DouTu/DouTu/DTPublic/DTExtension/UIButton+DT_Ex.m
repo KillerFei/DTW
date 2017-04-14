@@ -41,7 +41,7 @@
     [btn setImage:image forState:UIControlStateNormal];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:titleColor forState:UIControlStateNormal];
-    [btn setBackgroundImage:[bgImg stretchableImageWithLeftCapWidth:15 topCapHeight:10] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[bgImg stretchableImageWithLeftCapWidth:bgImg.size.width/2 topCapHeight:bgImg.size.height/2] forState:UIControlStateNormal];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     return btn;
 }

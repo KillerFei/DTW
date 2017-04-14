@@ -8,18 +8,21 @@
 
 #import "AppDelegate.h"
 #import "DTBaseTabbarController.h"
-@interface AppDelegate ()<TencentSessionDelegate>
+#import "HcdGuideView.h"
+@interface AppDelegate ()<TencentSessionDelegate, HcdGuideViewDelegate>
+
+@property (nonatomic, strong) HcdGuideView *guideView;
 
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [self setUpBaseNetwork];
     [self setUpSDWebImage];
     [self setUpKeyWindow];
+    [self setUpWecomeView];
     //向微信注册
     [WXApi registerApp:@"wxd930ea5d5a258f4f"];
     [[TencentOAuth alloc] initWithAppId:@"1106050546" andDelegate:self];
@@ -38,7 +41,7 @@
     [HYBNetworking enableInterfaceDebug:NO];                        //是否开启debug模式
     [HYBNetworking obtainDataFromLocalWhenNetworkUnconnected:YES];  //网络异常时本地获取数据
     [HYBNetworking cacheGetRequest:YES shoulCachePost:YES];         //数据缓存
-    [HYBNetworking setTimeout:20.f];                                //超时回调
+    [HYBNetworking setTimeout:20.f];//超时回调
 }
 #pragma mark - setUpSDWebImage
 - (void)setUpSDWebImage
@@ -53,6 +56,28 @@
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.rootViewController = [[DTBaseTabbarController alloc] init];
     [_window makeKeyAndVisible];
+}
+#pragma mark - setUpWecomeView
+- (void)setUpWecomeView
+{
+    NSMutableArray *images = [NSMutableArray new];
+    
+    [images addObject:[UIImage imageNamed:@"dt_wecome_00"]];
+    [images addObject:[UIImage imageNamed:@"dt_wecome_01"]];
+    [images addObject:[UIImage imageNamed:@"dt_wecome_02"]];
+    
+    _guideView = [[HcdGuideView alloc] init];
+    _guideView.delegate = self;
+    _guideView.window = self.window;
+    [_guideView showGuideViewWithImages:images
+                         andButtonTitle:@"立即体验"
+                    andButtonTitleColor:[UIColor whiteColor]
+                       andButtonBGColor:[UIColor clearColor]
+                   andButtonBorderColor:[UIColor whiteColor]];
+}
+- (void)hcdGuideViewEndShow
+{
+    _guideView = nil;
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {

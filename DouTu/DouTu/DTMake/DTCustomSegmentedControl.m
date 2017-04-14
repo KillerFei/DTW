@@ -20,29 +20,23 @@
 - (UIButton *)leftBtn
 {
     if (!_leftBtn) {
-        _leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _seleteBtn = _leftBtn;
-        _leftBtn.tag = 10001;
-        _leftBtn.selected = YES;
-        _leftBtn.userInteractionEnabled = NO;
-        _leftBtn.titleLabel.font = DT_Nav_TitleFont;
-        [_leftBtn setTitle:@"最新" forState:UIControlStateNormal];
-        [_leftBtn setTitleColor:DT_Nav_TitleColor forState:UIControlStateNormal];
+        _leftBtn = [UIButton dtNormalButtonWithTitle:@"最新" titleFont:DT_Nav_TitleFont titleColor:DT_Nav_TitleColor image:nil bgColor:nil bgImg:nil target:self action:@selector(btnAction:)];
         [_leftBtn setBackgroundImage:[UIImage imageNamed:@"dt_make_seg_btn_left"] forState:UIControlStateSelected];
-        [_leftBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+        _leftBtn.userInteractionEnabled = NO;
+        _leftBtn.selected = YES;
+        _leftBtn.tag      = 10001;
+        _seleteBtn        = _leftBtn;
     }
     return _leftBtn;
 }
 - (UIButton *)rightBtn
 {
     if (!_rightBtn) {
-        _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _rightBtn.tag = 10002;
-        _rightBtn.titleLabel.font = DT_Nav_TitleFont;
-        [_rightBtn setTitle:@"分类" forState:UIControlStateNormal];
-        [_rightBtn setTitleColor:DT_Nav_TitleColor forState:UIControlStateNormal];
+        
+        _rightBtn = [UIButton dtNormalButtonWithTitle:@"分类" titleFont:DT_Nav_TitleFont titleColor:DT_Nav_TitleColor image:nil bgColor:nil bgImg:nil target:self action:@selector(btnAction:)];
         [_rightBtn setBackgroundImage:[UIImage imageNamed:@"dt_make_seg_btn_right"] forState:UIControlStateSelected];
-        [_rightBtn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+        _rightBtn.tag = 10002;
+        
     }
     return _rightBtn;
 }
@@ -56,8 +50,6 @@
 }
 - (void)addSubViews
 {
-    self.layer.masksToBounds = YES;
-    self.layer.cornerRadius  = 5;
     self.image = [UIImage imageNamed:@"dt_make_seg_bg"];
     self.userInteractionEnabled = YES;
     [self addSubview:self.leftBtn];
@@ -85,8 +77,7 @@
     _seleteBtn.userInteractionEnabled = YES;
     _seleteBtn = sender;
     _seleteBtn.selected = YES;
-    _seleteBtn.userInteractionEnabled = NO;
-    
+    _seleteBtn.userInteractionEnabled = NO;    
     if (_delegate && [_delegate respondsToSelector:@selector(didSeleteSegmentedControlAtIndex:)]) {
         
         [_delegate didSeleteSegmentedControlAtIndex:sender.tag-10001];

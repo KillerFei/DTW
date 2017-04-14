@@ -56,6 +56,7 @@
         btn.tag = 1000+i;
         btn.titleLabel.font = DT_Base_TitleFont;
         btn.frame = CGRectMake(0+btnWidth*i, 0, btnWidth, self.height-1);
+        
         switch (i) {
             case 0:
                 [btn setTitle:@"热门配文" forState:UIControlStateNormal];

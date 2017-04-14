@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '0B8125028DD48FB8E50B28F0F4EB3DF9'
-               BlueprintName = 'SDWebImage'
+               BlueprintIdentifier = 'A7BF7964148116B0B70EE074BC29ABDC'
+               BlueprintName = 'HcdGuideView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libSDWebImage.a'>
+               BuildableName = 'libHcdGuideView.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
