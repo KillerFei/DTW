@@ -151,6 +151,7 @@ static NSString *const kDTMyCellIdentifier = @"myCellIdentifier";
 {
     DTDisclaimerVC *disVC = [[DTDisclaimerVC alloc] init];
     disVC.navTitle = @"免责声明";
+    disVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:disVC animated:YES];
 }
 // 清楚缓存

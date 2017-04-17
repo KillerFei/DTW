@@ -171,18 +171,11 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         NSArray *hots = [self.dataSource objectForKey:@"hots"];
-        if (indexPath.item < hots.count-1) {
-            
-            DTTagViewController *tagVC = [[DTTagViewController alloc] init];
-            tagVC.tagId = [hots[indexPath.item] pid];
-            tagVC.navTitle = [hots[indexPath.item] name];
-            [self.navigationController pushViewController:tagVC animated:YES];
-        } else {
-            
-            DTAllTypeViewController *typeVC = [[DTAllTypeViewController alloc] init];
-            typeVC.navTitle = @"更多表情";
-            [self.navigationController pushViewController:typeVC animated:YES];
-        }
+        DTTagViewController *tagVC = [[DTTagViewController alloc] init];
+        tagVC.tagId = [hots[indexPath.item] pid];
+        tagVC.navTitle = [hots[indexPath.item] name];
+        tagVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:tagVC animated:YES];
         return;
     }
     if (_seleteIndexPath == indexPath && _bShow) {
@@ -257,6 +250,7 @@
 {
     DTEditViewController *editVC = [[DTEditViewController alloc] init];
     editVC.itemId = _picModel.itemId;
+    editVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:editVC animated:YES];
 }
 @end

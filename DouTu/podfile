@@ -9,4 +9,5 @@ pod 'MJExtension’
 pod 'FMDB'
 pod 'MBProgressHUD', '~> 1.0.0'
 pod 'HcdGuideView'
+pod 'FDFullscreenPopGesture', '~> 1.1'
 end
