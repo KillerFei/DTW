@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FDFullscreenPopGesture.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,12 +57,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1FC81F409A74BE30519ED77A876AAC52</key>
+		<key>0B8125028DD48FB8E50B28F0F4EB3DF9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2C71DE0FB8A6E5BB6EAF9FB037D799CC</key>
+		<key>1736C8152E7C6F9020DDCE66BD510F1C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -78,11 +73,6 @@
 			<true/>
 		</dict>
 		<key>70BC44266C6FFE30D2C57129458E070B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8607CA195049E4868BAEAAF135DDF59C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

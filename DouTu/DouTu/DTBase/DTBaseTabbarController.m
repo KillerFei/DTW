@@ -28,14 +28,20 @@
 {
     DTStoreViewController *storeVC = [[DTStoreViewController alloc] init];
     DTBaseNavigationController *storeNav = [[DTBaseNavigationController alloc] initWithRootViewController:storeVC];
+    storeNav.canDragBack = YES;
+    storeNav.showDragAnimation = YES;
     storeVC.title = @"广场";
     
     DTMakeViewController *makeVC = [[DTMakeViewController alloc] init];
     DTBaseNavigationController *makeNav = [[DTBaseNavigationController alloc] initWithRootViewController:makeVC];
+    makeNav.canDragBack = YES;
+    makeNav.showDragAnimation = YES;
     makeVC.title = @"制作";
     
     DTMyViewController *myVC = [[DTMyViewController alloc] init];
     DTBaseNavigationController *myNav = [[DTBaseNavigationController alloc] initWithRootViewController:myVC];
+    myNav.canDragBack = YES;
+    myNav.showDragAnimation = YES;
     myVC.title = @"我的";
     
     self.viewControllers = @[storeNav, makeNav, myNav];

@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DTBaseNavigationController : UINavigationController
+@interface DTBaseNavigationController : MCNavigationController
 @end

@@ -39,6 +39,7 @@
 #import "SDWebImageManager.h"
 #import <SDWebImage/UIImage+GIF.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "MCNavigationController.h"
 //------------------- 开放平台 -------------
 #import "WXApi.h"
 #import <TencentOpenAPI/TencentOAuth.h>
